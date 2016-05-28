@@ -1,0 +1,44 @@
+{
+  "compilerOptions": {
+    "removeComments": false,
+    "preserveConstEnums": true,
+    "sourceMap": true,
+    "declaration": true,
+    "noImplicitAny": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "module": "commonjs",
+    "noEmitHelpers": false,
+    "target": "ES5",
+    "outDir": "./"
+  },
+  "formatCodeOptions": {
+    "indentSize": 2,
+    "tabSize": 2
+  },
+  "files": [
+    "typings/main.d.ts",
+    "src/core.ts",
+    "src/extra/concat.ts",
+    "src/extra/debounce.ts",
+    "src/extra/delay.ts",
+    "src/extra/dropRepeats.ts",
+    "src/extra/dropUntil.ts",
+    "src/extra/flattenSequentially.ts",
+    "src/extra/fromDiagram.ts",
+    "src/extra/fromEvent.ts",
+    "src/extra/pairwise.ts",
+    "src/extra/split.ts",
+    "src/index.ts"
+  ],
+  "filesGlob": [
+    "typings/main.d.ts",
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "tests"
+  ],
+  "atom": {
+    "rewriteTsconfig": true
+  }
+}
