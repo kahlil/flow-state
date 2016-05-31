@@ -1,5 +1,7 @@
 *.js
-
+*.js.map
+*.d.ts
+dist
 
 # Created by https://www.gitignore.io/api/node,typings,osx,windows
 
