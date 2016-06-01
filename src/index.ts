@@ -23,13 +23,13 @@ export class OddStream {
     return actionCreator$.subscribe(nextFn, errorFn);
   }
 
-  makeStateStream(reducers: {}) {
+  makeStateStream(reducers: {}, initialState: any) {
     const getReducer = (actionType: string) => reducers[camelCase(actionType)];
     const mapReducer = (action: Action) => curry(getReducer(action.type))(action);
     return this.dispatcher$
       .filter((action: Action) => !!getReducer(action.type))
       .map(mapReducer)
-      .scan((state: Array<any>, reducer: (state: Array<any>) => Array<any>) => reducer(state), [])
+      .scan((state: any, reducer: (state: any) => any) => reducer(state), initialState)
       .publishReplay(1).refCount();
   }
 
