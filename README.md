@@ -1,6 +1,6 @@
 # oddstream
 
-> One Direction Data stream
+> One Direction Data Stream
 
 A library to easily apply a unidirectional dataflow architecture with RxJS.
 
