@@ -8,7 +8,8 @@
     "build:js": "browserify -e index.js -o dist/oddstream.js",
     "build:umd": "browserify -e index.js -s oddstream | derequire > dist/oddstream.umd.js",
     "build": "npm-run-all mkdist --parallel build:js build:umd",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublish": "tsc"
   },
   "author": "Kahlil Lechelt",
   "license": "MIT",
@@ -19,6 +20,7 @@
     "rxjs": "^5.0.0-beta.8"
   },
   "devDependencies": {
+    "ava": "^0.15.1",
     "browserify": "^13.0.1",
     "derequire": "^2.0.3",
     "mkdirp": "^0.5.1",
