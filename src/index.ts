@@ -20,7 +20,7 @@ export class OddStream {
     const actionCreator$ = this.mapToActionCreator(action$, actionType);
     const nextFn = (data: any) => this.dispatcher$.next(data);
     const errorFn = (error: {}) => console.error('🔥', error);
-    actionCreator$.subscribe(nextFn, errorFn);
+    return actionCreator$.subscribe(nextFn, errorFn);
   }
 
   makeStateStream(reducers: {}) {
