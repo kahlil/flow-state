@@ -18,15 +18,12 @@
   "files": [
     "typings/index.d.ts",
     "src/index.ts",
-    "src/interface/action.ts"
-  ],
-  "filesGlob": [
-    "typings/index.d.ts",
-    "src/**/*.ts"
+    "src/interface/action.ts",
+    "node_modules/typescript/lib/lib.es6.d.ts"
   ],
   "exclude": [
     "node_modules",
-    "tests"
+    "test"
   ],
   "atom": {
     "rewriteTsconfig": true

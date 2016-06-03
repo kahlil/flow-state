@@ -3,13 +3,15 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "typings": "index.d.ts",
   "scripts": {
     "mkdist": "mkdirp dist",
     "build:js": "browserify -e index.js -o dist/oddstream.js",
     "build:umd": "browserify -e index.js -s oddstream | derequire > dist/oddstream.umd.js",
     "build": "npm-run-all mkdist --parallel build:js build:umd",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prepublish": "tsc"
+    "tsc": "tsc",
+    "ava": "ava",
+    "test": "ava"
   },
   "author": "Kahlil Lechelt",
   "license": "MIT",
@@ -24,6 +26,7 @@
     "browserify": "^13.0.1",
     "derequire": "^2.0.3",
     "mkdirp": "^0.5.1",
+    "typescript": "^1.8.10",
     "uglify-js": "^2.6.2"
   }
 }
