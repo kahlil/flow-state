@@ -11,7 +11,8 @@
     "build": "npm-run-all mkdist --parallel build:js build:umd",
     "tsc": "tsc",
     "ava": "ava",
-    "test": "ava"
+    "clean": "rimraf index.js index.d.ts index.js.map interface",
+    "test": "npm-run-all tsc ava clean"
   },
   "author": "Kahlil Lechelt",
   "license": "MIT",
@@ -26,6 +27,7 @@
     "browserify": "^13.0.1",
     "derequire": "^2.0.3",
     "mkdirp": "^0.5.1",
+    "rimraf": "^2.5.2",
     "typescript": "^1.8.10",
     "uglify-js": "^2.6.2"
   }

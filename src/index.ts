@@ -1,12 +1,13 @@
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 import { Action } from './interface/action';
 
 const curry = require('lodash.curry');
 const camelCase = require('lodash.camelcase');
 
-import 'rxjs/operator/filter';
-import 'rxjs/operator/map';
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/map';
 
 export class OddStream {
   public dispatcher$: any;
@@ -16,7 +17,7 @@ export class OddStream {
     this.dispatcher$ = new Subject();
   }
 
-  dispatch(action$: Observable<Action>, actionType: string) {
+  dispatch(action$: Observable<Action>, actionType: string): Subscription {
     const actionCreator$ = this.mapToActionCreator(action$, actionType);
     const nextFn = (data: any) => this.dispatcher$.next(data);
     const errorFn = (error: {}) => console.error('🔥', error);
@@ -33,7 +34,7 @@ export class OddStream {
       .publishReplay(1).refCount();
   }
 
-  mapToActionCreator(stream: any, actionType: string) {
+  mapToActionCreator(stream: Observable<any>, actionType: string) {
     const actionCreator = this.actionCreators[camelCase(actionType)];
     if (!!actionCreator === false) {
       throw new Error(`No action creator defined for this action: ${actionType}`);
