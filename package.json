@@ -10,7 +10,7 @@
     "build:umd": "browserify -e index.js -s oddstream | derequire > dist/oddstream.umd.js",
     "build": "npm-run-all mkdist --parallel build:js build:umd",
     "tsc": "tsc",
-    "ava": "ava",
+    "ava": "ava --tap | tap-nyan",
     "clean": "rimraf index.js index.d.ts index.js.map interface",
     "test": "npm-run-all tsc ava clean"
   },
@@ -28,6 +28,7 @@
     "derequire": "^2.0.3",
     "mkdirp": "^0.5.1",
     "rimraf": "^2.5.2",
+    "tap-nyan": "0.0.2",
     "typescript": "^1.8.10",
     "uglify-js": "^2.6.2"
   }

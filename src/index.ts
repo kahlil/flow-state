@@ -8,6 +8,8 @@ const camelCase = require('lodash.camelcase');
 
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/scan';
+import 'rxjs/add/operator/publishReplay';
 
 export class OddStream {
   public dispatcher$: any;
@@ -17,14 +19,14 @@ export class OddStream {
     this.dispatcher$ = new Subject();
   }
 
-  dispatch(action$: Observable<Action>, actionType: string): Subscription {
+  dispatch(action$: Observable<any>, actionType: string): Subscription {
     const actionCreator$ = this.mapToActionCreator(action$, actionType);
     const nextFn = (data: any) => this.dispatcher$.next(data);
     const errorFn = (error: {}) => console.error('🔥', error);
     return actionCreator$.subscribe(nextFn, errorFn);
   }
 
-  makeStateStream(reducers: {}, initialState: any) {
+  makeStateStream(reducers: any, initialState: any) {
     const getReducer = (actionType: string) => reducers[camelCase(actionType)];
     const mapReducer = (action: Action) => curry(getReducer(action.type))(action);
     return this.dispatcher$
