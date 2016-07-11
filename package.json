@@ -12,7 +12,8 @@
     "tsc": "tsc",
     "ava": "ava --tap | tap-nyan",
     "clean": "rimraf index.js index.d.ts index.js.map interface",
-    "test": "npm-run-all tsc ava clean"
+    "test": "npm-run-all tsc ava clean",
+    "prepublish": "npm-run-all tsc build"
   },
   "author": "Kahlil Lechelt",
   "license": "MIT",

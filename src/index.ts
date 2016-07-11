@@ -26,7 +26,7 @@ export class OddStream {
     return actionCreator$.subscribe(nextFn, errorFn);
   }
 
-  makeStateStream(reducers: any, initialState: any) {
+  makeStateStream(reducers: any, initialState: any): Observable<any> {
     const getReducer = (actionType: string) => reducers[camelCase(actionType)];
     const mapReducer = (action: Action) => curry(getReducer(action.type))(action);
     return this.dispatcher$
@@ -36,7 +36,7 @@ export class OddStream {
       .publishReplay(1).refCount();
   }
 
-  mapToActionCreator(stream: Observable<any>, actionType: string) {
+  mapToActionCreator(stream: Observable<any>, actionType: string): Observable<any> {
     const actionCreator = this.actionCreators[camelCase(actionType)];
     if (!!actionCreator === false) {
       throw new Error(`No action creator defined for this action: ${actionType}`);
