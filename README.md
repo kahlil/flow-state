@@ -11,7 +11,7 @@ A library to easily apply a unidirectional dataflow in your apps with RxJS.
 ## Usage
 
 ```js
-import * as OddStream from 'oddstream';
+import OddStream from 'oddstream';
 
 const oddStream = new OddStream();
 ```

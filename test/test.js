@@ -1,4 +1,4 @@
-import { OddStream } from '../';
+import { default as OddStream } from '../';
 import { Observable } from 'rxjs/Observable';
 import test from 'ava';
 import 'rxjs/add/observable/of';
