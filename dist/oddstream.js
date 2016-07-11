@@ -42,7 +42,8 @@ var OddStream = (function () {
     };
     return OddStream;
 }());
-exports.OddStream = OddStream;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = OddStream;
 
 },{"lodash.camelcase":2,"lodash.curry":11,"rxjs/Subject":17,"rxjs/add/operator/filter":21,"rxjs/add/operator/map":22,"rxjs/add/operator/publishReplay":23,"rxjs/add/operator/scan":24}],2:[function(require,module,exports){
 /**
