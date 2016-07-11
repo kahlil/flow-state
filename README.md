@@ -11,7 +11,7 @@ A library to easily apply a unidirectional dataflow in your apps with RxJS.
 ## Usage
 
 ```js
-import { OddStream } from 'oddstream';
+import * as OddStream from 'oddstream';
 
 const oddStream = new OddStream();
 ```
@@ -36,6 +36,9 @@ In your components dispatch action by passing
 an action stream and the action name or constant.
 
 ```js
+// There are many ways to create streams from user intent.
+// Some frameworks (like Angular 2) offer their own ways.
+// In this example I am just using the RxJS library.
 buttonClick$ = Rx.Observable.fromEvent('.some-button', click);
 oddStream.dispatch(buttonClick$, 'BUTTON_CLICK');
 ```
