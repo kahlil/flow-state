@@ -6,7 +6,7 @@ A library to easily apply a unidirectional dataflow in your apps with RxJS.
 
 ## Install
 
-`npm install --save-dev oddstream`
+`npm install --save oddstream`
 
 ## Usage
 
