@@ -29,6 +29,7 @@
     "browserify": "^13.0.1",
     "derequire": "^2.0.3",
     "mkdirp": "^0.5.1",
+    "npm-run-all": "^2.3.0",
     "rimraf": "^2.5.2",
     "tap-nyan": "0.0.2",
     "typescript": "^1.8.10",
