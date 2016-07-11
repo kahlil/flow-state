@@ -11,7 +11,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/scan';
 import 'rxjs/add/operator/publishReplay';
 
-export class OddStream {
+export default class OddStream {
   public dispatcher$: any;
   private actionCreators: any;
 
