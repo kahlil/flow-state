@@ -19,6 +19,7 @@ var OddStream = (function () {
         return actionCreator$.subscribe(nextFn, errorFn);
     };
     OddStream.prototype.makeStateStream = function (reducers, initialState) {
+        if (initialState === void 0) { initialState = []; }
         var getReducer = function (actionType) { return reducers[camelCase(actionType)]; };
         var mapReducer = function (action) { return curry(getReducer(action.type))(action); };
         return this.dispatcher$

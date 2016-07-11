@@ -26,7 +26,7 @@ export default class OddStream {
     return actionCreator$.subscribe(nextFn, errorFn);
   }
 
-  makeStateStream(reducers: any, initialState: any): Observable<any> {
+  makeStateStream(reducers: any, initialState: any = []): Observable<any> {
     const getReducer = (actionType: string) => reducers[camelCase(actionType)];
     const mapReducer = (action: Action) => curry(getReducer(action.type))(action);
     return this.dispatcher$
