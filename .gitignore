@@ -1,7 +1,7 @@
 /*.js
 /*.js.map
 /*.d.ts
-interface
+/interface
 
 # Created by https://www.gitignore.io/api/node,typings,osx,windows
 
