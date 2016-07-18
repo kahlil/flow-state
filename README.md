@@ -2,7 +2,7 @@
 
 > One Direction Data Stream
 
-A library to easily apply a unidirectional dataflow in your apps with RxJS.
+A Redux-ish library to easily apply a unidirectional dataflow in your apps with RxJS.
 
 ## Install
 
@@ -25,8 +25,8 @@ Preferably in the code of the main component that contains the rest of your app.
 ```js
 // A collection of action creators.
 const actionCreators = {
-  deleteItem: id => ({ type: 'DELETE_ITEM', data: { id }}),
-  addItem: item => ({ type: 'ADD_ITEM', data: { item }}),
+  deleteItem: id => ({ type: 'DELETE_ITEM', payload: { id }}),
+  addItem: item => ({ type: 'ADD_ITEM', payload: { item }}),
   // ...
 };
 
@@ -57,8 +57,8 @@ depend on one another.
 // A collection of reducers.
 const reducers = {
   deleteItem: (action, state) => state
-    .filter(item => state.filter(item.id !== action.data.id)),
-  addItem: (action, state) => [...state, action.data],
+    .filter(item => state.filter(item.id !== action.payload.id)),
+  addItem: (action, state) => [...state, action.payload],
   // ...
 };
 
@@ -81,10 +81,10 @@ dispatcher$
   .do(action => {
     switch(action.type) {
       case 'DELETE_ITEM':
-        serverApi.deleteItem(action.data);
+        serverApi.deleteItem(action.payload);
         break;
       case 'ADD_ITEM':
-        serverApi.addItem(action.data);
+        serverApi.addItem(action.payload);
         break;
     }
   });

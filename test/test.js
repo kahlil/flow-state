@@ -30,11 +30,11 @@ test('dispatch()', t => {
   const stream = Observable.of(1);
   // Create actionCreator.
   const actionCreators = {
-    testAction: id => ({ type: 'TEST_ACTION', data: id }),
+    testAction: id => ({ type: 'TEST_ACTION', payload: id }),
   }
   const returnStream = dispatcher$
     .map(action => {
-      t.deepEqual(action, { type: 'TEST_ACTION', data: 1 }, 'Correct action is dispatched.')
+      t.deepEqual(action, { type: 'TEST_ACTION', payload: 1 }, 'Correct action is dispatched.')
     })
     .subscribe();
   // Set the actioncreators.
@@ -50,12 +50,12 @@ test('makeStateStream()', t => {
   const stream = Observable.of(1);
   // Create actionCreator.
   const actionCreators = {
-    testAction: id => ({ type: 'TEST_ACTION', data: id }),
+    testAction: id => ({ type: 'TEST_ACTION', payload: id }),
   }
   oddstream.setActionCreators(actionCreators);
   const returnStream = oddstream
     .makeStateStream({ testAction: (action, state) => {
-      state.push(action.data);
+      state.push(action.payload);
       return state;
     }}, [])
     .map(state => {
@@ -73,12 +73,12 @@ test('mapToActionCreator()', t => {
   const stream = Observable.of(1);
   // Create actionCreator.
   const actionCreators = {
-    testAction: id => ({ type: 'TEST_ACTION', data: id }),
+    testAction: id => ({ type: 'TEST_ACTION', payload: id }),
   }
   oddstream.setActionCreators(actionCreators);
   const returnStream = oddstream.mapToActionCreator(stream, 'TEST_ACTION')
     .map(action => {
-      t.deepEqual(action, { type: 'TEST_ACTION', data: 1 }, 'Correct action is dispatched.')
+      t.deepEqual(action, { type: 'TEST_ACTION', payload: 1 }, 'Correct action is dispatched.')
     })
     .subscribe();
 

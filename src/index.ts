@@ -21,7 +21,7 @@ export default class OddStream {
 
   dispatch(action$: Observable<any>, actionType: string): Subscription {
     const actionCreator$ = this.mapToActionCreator(action$, actionType);
-    const nextFn = (data: any) => this.dispatcher$.next(data);
+    const nextFn = (payload: any) => this.dispatcher$.next(payload);
     const errorFn = (error: {}) => console.error('🔥', error);
     return actionCreator$.subscribe(nextFn, errorFn);
   }
