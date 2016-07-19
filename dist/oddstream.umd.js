@@ -14,7 +14,7 @@ var OddStream = (function () {
     OddStream.prototype.dispatch = function (action$, actionType) {
         var _this = this;
         var actionCreator$ = this.mapToActionCreator(action$, actionType);
-        var nextFn = function (data) { return _this.dispatcher$.next(data); };
+        var nextFn = function (payload) { return _this.dispatcher$.next(payload); };
         var errorFn = function (error) { return console.error('🔥', error); };
         return actionCreator$.subscribe(nextFn, errorFn);
     };
