@@ -1,7 +1,7 @@
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-import { Action } from './interface/action';
+import { Action, ActionCreators } from './interface/action';
 
 const curry = require('lodash.curry');
 const camelCase = require('lodash.camelcase');
@@ -13,13 +13,13 @@ import 'rxjs/add/operator/publishReplay';
 
 export default class OddStream {
   public dispatcher$: any;
-  private actionCreators: any;
+  private actionCreators: any = {};
 
   constructor() {
     this.dispatcher$ = new Subject();
   }
 
-  dispatch(action$: Observable<any>, actionType: string): Subscription {
+  dispatch(action$: any, actionType: string): Subscription {
     const actionCreator$ = this.mapToActionCreator(action$, actionType);
     const nextFn = (payload: any) => this.dispatcher$.next(payload);
     const errorFn = (error: {}) => console.error('🔥', error);
@@ -44,8 +44,25 @@ export default class OddStream {
     return stream.map(actionCreator);
   }
 
-  setActionCreators(actionCreators: {}) {
+  setActionCreators(actionCreators: ActionCreators) {
     this.actionCreators = actionCreators;
+  }
+
+  addActionCreators(actionCreators: ActionCreators) {
+    const availableActionCreatorKeys = Object.keys(this.actionCreators);
+    // Throw an error if an action creator key already exists.
+    Object.keys(actionCreators).forEach(key => {
+      if (key in availableActionCreatorKeys) {
+        throw new Error(`
+          An action creator with the key ${key} already exists.
+          Please only add new action creators or use setActionCreators
+          to overwrite the current collection of action creators.
+        `);
+      }
+    });
+
+    // Merge the new action creators into `this.actionCreators`.
+    Object.assign(this.actionCreators, actionCreators);
   }
 
   getDispatcher$() {
