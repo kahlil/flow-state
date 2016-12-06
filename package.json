@@ -3,6 +3,7 @@
   "version": "4.0.2",
   "description": "A library to easily apply a unidirectional dataflow in your apps with RxJS.",
   "main": "build/index.js",
+  "typings": "build/index.d.ts",
   "scripts": {
     "tsc": "tsc",
     "build": "run-s clean tsc",
