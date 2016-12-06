@@ -23,15 +23,15 @@
     "rxjs": "^5.0.0-rc.4"
   },
   "devDependencies": {
-    "ava": "^0.15.1",
-    "browserify": "^13.0.1",
+    "ava": "^0.17.0",
+    "browserify": "^13.1.1",
     "derequire": "^2.0.3",
     "mkdirp": "^0.5.1",
-    "npm-run-all": "^2.3.0",
-    "rimraf": "^2.5.2",
-    "tap-nyan": "0.0.2",
+    "npm-run-all": "^3.1.2",
+    "rimraf": "^2.5.4",
+    "tap-nyan": "^1.1.0",
     "tslint": "^4.0.2",
     "typescript": "^2.0.10",
-    "uglify-js": "^2.6.2"
+    "uglify-js": "^2.7.5"
   }
 }
