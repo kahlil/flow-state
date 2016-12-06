@@ -11,9 +11,9 @@ A Redux-ish library to easily apply a unidirectional dataflow in your apps with 
 ## Usage
 
 ```js
-import OddStream from 'oddstream';
+import { createOddstream } from 'oddstream';
 
-const oddStream = new OddStream();
+const oddstream = createOddstream();
 ```
 
 See it in use in an Angular 2 app [here](https://github.com/kahlil/tinydraft).
@@ -30,7 +30,7 @@ const actionCreators = {
   // ...
 };
 
-oddStream.setActionCreators(actionCreators);
+oddstream.setActionCreators(actionCreators);
 ```
 
 ### Dispatch Actions
@@ -42,7 +42,7 @@ an action stream and the action name or constant.
 // Some frameworks (like Angular 2) offer their own ways.
 // In this example I am just using the RxJS library.
 buttonClick$ = Rx.Observable.fromEvent('.some-button', click);
-oddStream.dispatch(buttonClick$, 'BUTTON_CLICK');
+oddstream.dispatch(buttonClick$, 'BUTTON_CLICK');
 ```
 
 ### Create A State Stream Based On Reducers
@@ -62,7 +62,7 @@ const reducers = {
   // ...
 };
 
-someComponentState$ = oddStream.makeStateStream(reducers, initialState);
+someComponentState$ = oddstream.makeStateStream(reducers, initialState);
 ```
 
 ### Trigger Side Effects
