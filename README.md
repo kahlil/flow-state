@@ -16,8 +16,6 @@ import { createOddstream } from 'oddstream';
 const oddstream = createOddstream();
 ```
 
-See it in use in an Angular 2 app [here](https://github.com/kahlil/tinydraft).
-
 ### Set Action Creators
 Pass all action creators to the OddStream library.
 Preferably in the code of the main component that contains the rest of your app.
