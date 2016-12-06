@@ -3,3 +3,4 @@ test
 .editorconfig
 tsconfig.json
 tslint.json
+.vscode
