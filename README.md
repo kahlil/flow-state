@@ -2,7 +2,8 @@
 
 > One Direction Data Stream
 
-A Redux-ish library to easily apply a unidirectional dataflow in your apps with RxJS.
+This is basically a simple Redux entirely based on RxJS streams.  
+An easy way to introduce a stream-based unidirectional dataflow into your app.
 
 ## Install
 
