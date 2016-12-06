@@ -1,7 +1,7 @@
 {
   "name": "oddstream",
   "version": "4.0.3",
-  "description": "A library to easily apply a unidirectional dataflow in your apps with RxJS.",
+  "description": "A simple Redux-type library entirely based on RxJS streams. This is an easy way to introduce a stream-based unidirectional dataflow into your app.",
   "main": "build/index.js",
   "typings": "build/index.d.ts",
   "scripts": {
