@@ -1,4 +1,4 @@
-import { default as OddStream } from '../';
+import { createOddstream } from '../build';
 import { Observable } from 'rxjs/Observable';
 import test from 'ava';
 import 'rxjs/add/observable/of';
@@ -6,7 +6,7 @@ import 'rxjs/add/observable/of';
 let oddstream;
 
 test.before(t => {
-  oddstream = new OddStream();
+  oddstream = createOddstream();
 });
 
 test('getDispatcher$()', t => {

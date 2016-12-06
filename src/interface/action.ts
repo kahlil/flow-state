@@ -4,7 +4,7 @@ export interface Action {
 }
 
 export interface ActionCreator {
-    (action: string, state: any): Action;
+  (payload?: any): Action;
 }
 
 export interface ActionCreators {

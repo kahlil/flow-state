@@ -1,31 +1,11 @@
 {
   "compilerOptions": {
-    "removeComments": false,
-    "preserveConstEnums": true,
+    "module": "commonjs",
+    "target": "es5",
+    "noImplicitAny": false,
     "sourceMap": true,
     "declaration": true,
-    "noImplicitAny": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "module": "commonjs",
-    "noEmitHelpers": false,
-    "target": "ES5",
-    "outDir": "./"
-  },
-  "formatCodeOptions": {
-    "indentSize": 2,
-    "tabSize": 2
-  },
-  "files": [
-    "typings/index.d.ts",
-    "src/index.ts",
-    "src/interface/action.ts",
-    "node_modules/typescript/lib/lib.es6.d.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "test"
-  ],
-  "atom": {
-    "rewriteTsconfig": true
+    "strictNullChecks": true,
+    "outDir": "build"
   }
 }

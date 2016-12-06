@@ -1,27 +1,26 @@
 {
   "name": "oddstream",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "A library to easily apply a unidirectional dataflow in your apps with RxJS.",
-  "main": "index.js",
-  "typings": "index.d.ts",
+  "main": "build/index.js",
   "scripts": {
-    "mkdist": "mkdirp dist",
-    "build:js": "browserify -e index.js -o dist/oddstream.js",
-    "build:umd": "browserify -e index.js -s oddstream | derequire > dist/oddstream.umd.js",
-    "build": "npm-run-all mkdist --parallel build:js build:umd",
     "tsc": "tsc",
+    "build": "run-s clean tsc",
     "ava": "ava --tap | tap-nyan",
-    "clean": "rimraf index.js index.d.ts index.js.map interface",
-    "test": "npm-run-all tsc ava clean",
-    "prepublish": "npm-run-all tsc build"
+    "clean": "rimraf build",
+    "test": "run-s build ava",
+    "prepublish": "run-s ts build"
   },
   "author": "Kahlil Lechelt",
   "license": "MIT",
   "repository": "kahlil/oddstream",
   "dependencies": {
-    "lodash.camelcase": "^4.1.1",
-    "lodash.curry": "^4.0.1",
-    "rxjs": "^5.0.0-beta.8"
+    "@types/es6-shim": "^0.31.32",
+    "@types/lodash": "^4.14.41",
+    "@types/node": "0.0.2",
+    "es6-shim": "^0.35.2",
+    "lodash": "^4.17.2",
+    "rxjs": "^5.0.0-rc.4"
   },
   "devDependencies": {
     "ava": "^0.15.1",
@@ -31,7 +30,8 @@
     "npm-run-all": "^2.3.0",
     "rimraf": "^2.5.2",
     "tap-nyan": "0.0.2",
-    "typescript": "^1.8.10",
+    "tslint": "^4.0.2",
+    "typescript": "^2.0.10",
     "uglify-js": "^2.6.2"
   }
 }
