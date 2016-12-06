@@ -9,7 +9,7 @@
     "ava": "ava --tap | tap-nyan",
     "clean": "rimraf build",
     "test": "run-s build ava",
-    "prepublish": "run-s build"
+    "prepublish": "npm run build"
   },
   "author": "Kahlil Lechelt",
   "license": "MIT",
