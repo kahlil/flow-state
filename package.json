@@ -1,6 +1,6 @@
 {
   "name": "oddstream",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "A library to easily apply a unidirectional dataflow in your apps with RxJS.",
   "main": "build/index.js",
   "scripts": {
