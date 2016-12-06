@@ -1,2 +1,5 @@
 src
 test
+.editorconfig
+tsconfig.json
+tslint.json
