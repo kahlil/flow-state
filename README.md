@@ -40,7 +40,7 @@ an action stream and the action name or constant.
 // There are many ways to create streams from user intent.
 // Some frameworks (like Angular 2) offer their own ways.
 // In this example I am just using the RxJS library.
-buttonClick$ = Rx.Observable.fromEvent('.some-button', click);
+buttonClick$ = Rx.Observable.fromEvent('.some-button', 'click');
 oddstream.dispatch(buttonClick$, 'BUTTON_CLICK');
 ```
 
