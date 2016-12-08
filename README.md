@@ -34,14 +34,15 @@ oddstream.setActionCreators(actionCreators);
 
 ### Dispatch Actions
 In your components dispatch action by passing
-an action stream and the action name or constant.
+an action stream and the action constant. Oddstream automatically
+maps the stream to the right action creator.
 
 ```js
 // There are many ways to create streams from user intent.
 // Some frameworks (like Angular 2) offer their own ways.
 // In this example I am just using the RxJS library.
 buttonClick$ = Rx.Observable.fromEvent('.some-button', 'click');
-oddstream.dispatch(buttonClick$, 'BUTTON_CLICK');
+oddstream.dispatch(buttonClick$, 'DELETE_ITEM');
 ```
 
 ### Create A State Stream Based On Reducers
