@@ -1,9 +1,10 @@
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
+import { curry, camelCase } from 'lodash';
 import { Action, ActionCreators } from './interface/action';
 import { CurriedReducer, Reducer, Reducers } from './interface/reducer';
-import { curry, camelCase } from 'lodash';
+import * as errorTexts from './error-texts';
 
 export class Oddstream {
   public dispatcher$: Subject<Action>;
@@ -33,7 +34,7 @@ export class Oddstream {
   mapToActionCreator(stream: Observable<any>, actionType: string): Observable<any> {
     const actionCreator = this.actionCreators[camelCase(actionType)];
     if (!actionCreator) {
-      throw new Error(`No action creator defined for this action: ${actionType}`);
+      throw new Error(errorTexts.missingActionCreator(actionType));
     }
     return stream.map(actionCreator);
   }
@@ -47,11 +48,7 @@ export class Oddstream {
     // Throw an error if an action creator key already exists.
     Object.keys(actionCreators).forEach(key => {
       if (key in availableActionCreatorKeys) {
-        throw new Error(`
-          An action creator with the key ${key} already exists.
-          Please only add new action creators or use setActionCreators
-          to overwrite the current collection of action creators.
-        `);
+        throw new Error(errorTexts.duplicateActionCreator(key));
       }
     });
     // Merge the new action creators into `this.actionCreators`.
