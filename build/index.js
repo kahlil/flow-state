@@ -7,6 +7,8 @@ require('rxjs/add/operator/publishReplay');
 require('rxjs/add/operator/combineLatest');
 require('rxjs/add/observable/of');
 var oddstream_1 = require('./oddstream');
+var oddstream_2 = require('./oddstream');
+exports.Oddstream = oddstream_2.Oddstream;
 function createOddstream() {
     return new oddstream_1.Oddstream();
 }

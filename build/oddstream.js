@@ -1,6 +1,7 @@
 "use strict";
 var Subject_1 = require('rxjs/Subject');
 var lodash_1 = require('lodash');
+var errorTexts = require('./error-texts');
 var Oddstream = (function () {
     function Oddstream() {
         this.actionCreators = {};
@@ -26,7 +27,7 @@ var Oddstream = (function () {
     Oddstream.prototype.mapToActionCreator = function (stream, actionType) {
         var actionCreator = this.actionCreators[lodash_1.camelCase(actionType)];
         if (!actionCreator) {
-            throw new Error("No action creator defined for this action: " + actionType);
+            throw new Error(errorTexts.missingActionCreator(actionType));
         }
         return stream.map(actionCreator);
     };
@@ -38,7 +39,7 @@ var Oddstream = (function () {
         // Throw an error if an action creator key already exists.
         Object.keys(actionCreators).forEach(function (key) {
             if (key in availableActionCreatorKeys) {
-                throw new Error("\n          An action creator with the key " + key + " already exists.\n          Please only add new action creators or use setActionCreators\n          to overwrite the current collection of action creators.\n        ");
+                throw new Error(errorTexts.duplicateActionCreator(key));
             }
         });
         // Merge the new action creators into `this.actionCreators`.

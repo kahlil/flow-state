@@ -2,13 +2,13 @@ import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { curry, camelCase } from 'lodash';
-import { Action, ActionCreators } from './interface/action';
+import { Action } from './interface/action';
 import { CurriedReducer, Reducer, Reducers } from './interface/reducer';
 import * as errorTexts from './error-texts';
 
 export class Oddstream {
   public dispatcher$: Subject<Action>;
-  private actionCreators: ActionCreators = {};
+  private actionCreators = {};
 
   constructor() {
     this.dispatcher$ = new Subject();
@@ -39,11 +39,11 @@ export class Oddstream {
     return stream.map(actionCreator);
   }
 
-  setActionCreators(actionCreators: ActionCreators) {
+  setActionCreators(actionCreators: any) {
     this.actionCreators = actionCreators;
   }
 
-  addActionCreators(actionCreators: ActionCreators) {
+  addActionCreators(actionCreators: any) {
     const availableActionCreatorKeys = Object.keys(this.actionCreators);
     // Throw an error if an action creator key already exists.
     Object.keys(actionCreators).forEach(key => {

@@ -7,6 +7,7 @@ import 'rxjs/add/operator/combineLatest';
 import 'rxjs/add/observable/of';
 
 import { Oddstream } from './oddstream';
+
 export { Oddstream } from './oddstream';
 
 export function createOddstream(): Oddstream {

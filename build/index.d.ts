@@ -6,4 +6,5 @@ import 'rxjs/add/operator/publishReplay';
 import 'rxjs/add/operator/combineLatest';
 import 'rxjs/add/observable/of';
 import { Oddstream } from './oddstream';
+export { Oddstream } from './oddstream';
 export declare function createOddstream(): Oddstream;
