@@ -22,7 +22,7 @@
     "es6-shim": "^0.35.2",
     "lodash": "^4.17.2",
     "multiline-template": "^0.1.1",
-    "rxjs": "^5.0.0-rc.4"
+    "rxjs": "^5.0.1"
   },
   "devDependencies": {
     "ava": "^0.17.0",
