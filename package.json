@@ -16,18 +16,18 @@
   "license": "MIT",
   "repository": "kahlil/oddstream",
   "dependencies": {
-    "@types/es6-shim": "^0.31.32",
-    "@types/lodash": "^4.14.41",
-    "@types/node": "0.0.2",
-    "es6-shim": "^0.35.2",
     "lodash": "^4.17.2",
     "multiline-template": "^0.1.1",
     "rxjs": "^5.0.1"
   },
   "devDependencies": {
+    "@types/es6-shim": "^0.31.32",
+    "@types/lodash": "^4.14.41",
+    "@types/node": "0.0.2",
     "ava": "^0.17.0",
     "browserify": "^13.1.1",
     "derequire": "^2.0.3",
+    "es6-shim": "^0.35.2",
     "mkdirp": "^0.5.1",
     "npm-run-all": "^3.1.2",
     "rimraf": "^2.5.4",
