@@ -28,7 +28,7 @@ export class Oddstream {
       .filter((action: Action) => !!getReducer(action.type))
       .map(mapReducer)
       .scan((state: any, reducer: CurriedReducer) => reducer(state), initialState)
-      .publishReplay(1).refCount();
+      .share();
   }
 
   mapToActionCreator(stream: Observable<any>, actionType: string): Observable<any> {
