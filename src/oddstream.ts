@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { curry, camelCase } from 'lodash';
 import { Action } from './interface/action';
-import { CurriedReducer, Reducer, Reducers } from './interface/reducer';
+import { CurriedReducer, Reducer } from './interface/reducer';
 import * as errorTexts from './error-texts';
 
 export class Oddstream {
@@ -21,13 +21,13 @@ export class Oddstream {
     return actionCreator$.subscribe(nextFn, errorFn);
   }
 
-  makeStateStream<S>(reducers: Reducers, initialState: any = []): Observable<S> {
+  makeStateStream(reducers: any, initialState: any = []): Observable<any> {
     const getReducer = (actionType: string): Reducer => reducers[camelCase(actionType)];
     const mapReducer = (action: Action): CurriedReducer => curry(getReducer(action.type))(action);
     return this.dispatcher$
       .filter((action: Action) => !!getReducer(action.type))
       .map(mapReducer)
-      .scan((state: S, reducer: CurriedReducer) => reducer(state), initialState)
+      .scan((state: any, reducer: CurriedReducer) => reducer(state), initialState)
       .publishReplay(1).refCount();
   }
 
