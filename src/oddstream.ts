@@ -14,8 +14,11 @@ export class Oddstream {
     this.dispatcher$ = new Subject();
   }
 
-  dispatch(action$: any, actionType: string): Subscription {
-    const actionCreator$ = this.mapToActionCreator(action$, actionType);
+  dispatch(actionType: string, payload$: any): Subscription {
+    if (!(payload$ instanceof Observable)) {
+      payload$ = Observable.of(payload$);
+    }
+    const actionCreator$ = this.mapToActionCreator(payload$, actionType);
     const nextFn = (payload: any) => this.dispatcher$.next(payload);
     const errorFn = (error: any) => console.error('🔥', error);
     return actionCreator$.subscribe(nextFn, errorFn);

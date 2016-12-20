@@ -1,5 +1,6 @@
 "use strict";
 var Subject_1 = require('rxjs/Subject');
+var Observable_1 = require('rxjs/Observable');
 var lodash_1 = require('lodash');
 var errorTexts = require('./error-texts');
 var Oddstream = (function () {
@@ -9,6 +10,9 @@ var Oddstream = (function () {
     }
     Oddstream.prototype.dispatch = function (action$, actionType) {
         var _this = this;
+        if (!(action$ instanceof Observable_1.Observable)) {
+            action$ = Observable_1.Observable.of(action$);
+        }
         var actionCreator$ = this.mapToActionCreator(action$, actionType);
         var nextFn = function (payload) { return _this.dispatcher$.next(payload); };
         var errorFn = function (error) { return console.error('🔥', error); };
@@ -22,7 +26,7 @@ var Oddstream = (function () {
             .filter(function (action) { return !!getReducer(action.type); })
             .map(mapReducer)
             .scan(function (state, reducer) { return reducer(state); }, initialState)
-            .publishReplay(1).refCount();
+            .share();
     };
     Oddstream.prototype.mapToActionCreator = function (stream, actionType) {
         var actionCreator = this.actionCreators[lodash_1.camelCase(actionType)];
