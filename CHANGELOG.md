@@ -1,3 +1,8 @@
+# v5.0.0
+
+## Breaking Changes
+- change the argument order of the dispatch function to action type first, payload stream second
+
 # v4.0.0
 
 ## Breaking changes

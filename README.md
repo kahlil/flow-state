@@ -42,7 +42,7 @@ maps the stream to the right action creator.
 // Some frameworks (like Angular 2) offer their own ways.
 // In this example I am just using the RxJS library.
 buttonClick$ = Rx.Observable.fromEvent('.some-button', 'click');
-oddstream.dispatch(buttonClick$, 'DELETE_ITEM');
+oddstream.dispatch('DELETE_ITEM', buttonClick$);
 ```
 
 ### Create A State Stream Based On Reducers
