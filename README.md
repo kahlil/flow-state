@@ -78,7 +78,7 @@ const serverApi = new serverApi();
 const dispatcher$ = getDispatcher$();
 
 dispatcher$
-  .do(action => {
+  .subscribe(action => {
     switch(action.type) {
       case 'DELETE_ITEM':
         serverApi.deleteItem(action.payload);
