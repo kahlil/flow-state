@@ -14,7 +14,7 @@ export class Oddstream {
     this.dispatcher$ = new Subject();
   }
 
-  dispatch(actionType: string, payload$: any): Subscription {
+  dispatch(actionType: string, payload$?: any): Subscription {
     if (!(payload$ instanceof Observable)) {
       payload$ = Observable.of(payload$);
     }

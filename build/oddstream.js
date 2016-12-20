@@ -8,12 +8,12 @@ var Oddstream = (function () {
         this.actionCreators = {};
         this.dispatcher$ = new Subject_1.Subject();
     }
-    Oddstream.prototype.dispatch = function (action$, actionType) {
+    Oddstream.prototype.dispatch = function (actionType, payload$) {
         var _this = this;
-        if (!(action$ instanceof Observable_1.Observable)) {
-            action$ = Observable_1.Observable.of(action$);
+        if (!(payload$ instanceof Observable_1.Observable)) {
+            payload$ = Observable_1.Observable.of(payload$);
         }
-        var actionCreator$ = this.mapToActionCreator(action$, actionType);
+        var actionCreator$ = this.mapToActionCreator(payload$, actionType);
         var nextFn = function (payload) { return _this.dispatcher$.next(payload); };
         var errorFn = function (error) { return console.error('🔥', error); };
         return actionCreator$.subscribe(nextFn, errorFn);
