@@ -65,6 +65,12 @@ const reducers = {
 someComponentState$ = oddstream.makeStateStream(reducers, initialState);
 ```
 
+In you component you can now subscribe to the component state stream: 
+
+```js
+someComponentState.subscribe(state => console.log(state));
+```
+
 ### Trigger Side Effects
 You can trigger your side effects by getting the dispatcher stream
 and firing effects on specific actions.
