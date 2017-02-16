@@ -8,11 +8,4 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/share';
 import 'rxjs/add/observable/of';
 
-import { Oddstream } from './oddstream';
-
-export { Oddstream } from './oddstream';
-
-export function createOddstream(): Oddstream {
-  return new Oddstream();
-}
-
+export * from './oddstream';

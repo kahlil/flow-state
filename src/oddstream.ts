@@ -62,3 +62,7 @@ export class Oddstream {
     return this.dispatcher$;
   }
 }
+
+export function createOddstream(): Oddstream {
+  return new Oddstream();
+}

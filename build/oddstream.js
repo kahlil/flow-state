@@ -1,8 +1,8 @@
 "use strict";
-var Subject_1 = require('rxjs/Subject');
-var Observable_1 = require('rxjs/Observable');
-var lodash_1 = require('lodash');
-var errorTexts = require('./error-texts');
+var Subject_1 = require("rxjs/Subject");
+var Observable_1 = require("rxjs/Observable");
+var lodash_1 = require("lodash");
+var errorTexts = require("./error-texts");
 var Oddstream = (function () {
     function Oddstream() {
         this.actionCreators = {};
@@ -55,4 +55,8 @@ var Oddstream = (function () {
     return Oddstream;
 }());
 exports.Oddstream = Oddstream;
+function createOddstream() {
+    return new Oddstream();
+}
+exports.createOddstream = createOddstream;
 //# sourceMappingURL=oddstream.js.map

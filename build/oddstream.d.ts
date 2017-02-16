@@ -13,3 +13,4 @@ export declare class Oddstream {
     addActionCreators(actionCreators: any): void;
     getDispatcher$(): Subject<Action>;
 }
+export declare function createOddstream(): Oddstream;

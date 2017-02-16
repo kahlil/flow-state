@@ -26,8 +26,6 @@ test('setActionCreators()', t => {
 test('dispatch()', t => {
   t.plan(1);
   const dispatcher$ = oddstream.getDispatcher$();
-  // Create observable stream.
-  const stream = Observable.of(1);
   // Create actionCreator.
   const actionCreators = {
     testAction: id => ({ type: 'TEST_ACTION', payload: id }),
@@ -39,15 +37,13 @@ test('dispatch()', t => {
     .subscribe();
   // Set the actioncreators.
   oddstream.setActionCreators(actionCreators);
-  oddstream.dispatch(stream, 'TEST_ACTION');
+  oddstream.dispatch('TEST_ACTION', 1);
 
   return returnStream;
 });
 
 test('makeStateStream()', t => {
   t.plan(1);
-  // Create observable stream.
-  const stream = Observable.of(1);
   // Create actionCreator.
   const actionCreators = {
     testAction: id => ({ type: 'TEST_ACTION', payload: id }),
@@ -62,7 +58,7 @@ test('makeStateStream()', t => {
       t.deepEqual(state, [1], 'Correct state is created.')
     })
     .subscribe();
-  oddstream.dispatch(stream, 'TEST_ACTION');
+  oddstream.dispatch('TEST_ACTION', 1);
 
   return returnStream;
 });
