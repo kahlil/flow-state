@@ -2,6 +2,7 @@
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
+Object.defineProperty(exports, "__esModule", { value: true });
 require("es6-shim");
 require("rxjs/add/operator/filter");
 require("rxjs/add/operator/map");

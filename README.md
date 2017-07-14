@@ -33,9 +33,8 @@ oddstream.setActionCreators(actionCreators);
 ```
 
 ### Dispatch Actions
-In your components dispatch action by passing
-an action stream and the action constant. Oddstream automatically
-maps the stream to the right action creator.
+In your components dispatch action by passing the action constant and optionally
+an action payload. The payload can be a stream or any other value.
 
 ```js
 // There are many ways to create streams from user intent.
@@ -43,10 +42,12 @@ maps the stream to the right action creator.
 // In this example I am just using the RxJS library.
 buttonClick$ = Rx.Observable.fromEvent('.some-button', 'click');
 oddstream.dispatch('DELETE_ITEM', buttonClick$);
+// or
+oddstream.dispatch('SOME_ACTION', { some: 'state' });
 ```
 
 ### Create A State Stream Based On Reducers
-In a file that you could call Store or something,
+In a file that you could call Store,
 create and expose state streams for you different components
 by passing the respective reducers.
 
