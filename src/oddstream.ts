@@ -1,5 +1,5 @@
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { curry, camelCase } from 'lodash';
 import { Action } from './interface/action';
 import { CurriedReducer, Reducer } from './interface/reducer';

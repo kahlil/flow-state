@@ -1,5 +1,5 @@
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Action } from './interface/action';
 export declare class Oddstream {
     dispatcher$: BehaviorSubject<Action>;

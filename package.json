@@ -17,13 +17,15 @@
   "repository": "kahlil/oddstream",
   "dependencies": {
     "es6-shim": "^0.35.3",
-    "lodash": "^4.17.4",
-    "multiline-template": "^0.1.1",
-    "rxjs": "^5.4.2"
+    "lodash.camelcase": "^4.3.0",
+    "lodash.curry": "^4.1.1",
+    "rxjs": "^5.4.2",
+    "rxjs-es": "^5.0.0-beta.12"
   },
   "devDependencies": {
     "@types/es6-shim": "^0.31.34",
-    "@types/lodash": "^4.14.68",
+    "@types/lodash.camelcase": "^4.3.2",
+    "@types/lodash.curry": "^4.1.2",
     "@types/node": "^8.0.11",
     "ava": "^0.20.0",
     "browserify": "^14.4.0",
@@ -31,6 +33,7 @@
     "mkdirp": "^0.5.1",
     "npm-run-all": "^4.0.2",
     "rimraf": "^2.6.1",
+    "rollup": "^0.45.2",
     "tap-nyan": "^1.1.0",
     "tslint": "^5.5.0",
     "typescript": "^2.4.1",
