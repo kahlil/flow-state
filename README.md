@@ -47,7 +47,7 @@ oddstream.dispatch('DELETE_ITEM', buttonClick$);
 
 ### Create A State Stream Based On Reducers
 In a file that you could call Store or something,
-create and expose state streams for you different components
+create and expose state streams for your components
 by passing the respective reducers.
 
 Here is also the place where you can combine state streams if they
@@ -65,7 +65,7 @@ const reducers = {
 someComponentState$ = oddstream.makeStateStream(reducers, initialState);
 ```
 
-In you component you can now subscribe to the component state stream: 
+In your component you can now subscribe to the component state stream: 
 
 ```js
 someComponentState.subscribe(state => console.log(state));
