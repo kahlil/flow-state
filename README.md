@@ -7,7 +7,7 @@ This is an easy way to introduce a stream-based unidirectional dataflow into you
 
 ## Install
 
-`npm install --save oddstream`
+`npm install oddstream`
 
 ## Usage
 
@@ -17,38 +17,17 @@ import { createOddstream } from 'oddstream';
 const oddstream = createOddstream();
 ```
 
-### Set Action Creators
-Pass all action creators to the OddStream library.
-Preferably in the code of the main component that contains the rest of your app.
-
-```js
-// A collection of action creators.
-const actionCreators = {
-  deleteItem: id => ({ type: 'DELETE_ITEM', payload: { id }}),
-  addItem: item => ({ type: 'ADD_ITEM', payload: { item }}),
-  // ...
-};
-
-oddstream.setActionCreators(actionCreators);
-```
-
 ### Dispatch Actions
-In your components dispatch action by passing the action constant and optionally
-an action payload. The payload can be a stream or any other value.
+In your components dispatch actions by passing the action constant and optionally
+an action payload. The payload can be any value.
 
 ```js
-// There are many ways to create streams from user intent.
-// Some frameworks (like Angular 2) offer their own ways.
-// In this example I am just using the RxJS library.
-buttonClick$ = Rx.Observable.fromEvent('.some-button', 'click');
-oddstream.dispatch('DELETE_ITEM', buttonClick$);
-// or
 oddstream.dispatch('SOME_ACTION', { some: 'state' });
 ```
 
 ### Create A State Stream Based On Reducers
 In a file that you could call Store,
-create and expose state streams for you different components
+create and expose state streams for your components
 by passing the respective reducers.
 
 Here is also the place where you can combine state streams if they
@@ -56,20 +35,20 @@ depend on one another.
 
 ```js
 // A collection of reducers.
-const reducers = {
+const itemListReducers = {
   deleteItem: (action, state) => state
     .filter(item => state.filter(item.id !== action.payload.id)),
   addItem: (action, state) => [...state, action.payload],
   // ...
 };
 
-someComponentState$ = oddstream.makeStateStream(reducers, initialState);
+itemListState$ = oddstream.makeStateStream(itemListReducers, initialState);
 ```
 
-In you component you can now subscribe to the component state stream: 
+In your component you can now subscribe to the component state stream: 
 
 ```js
-someComponentState.subscribe(state => console.log(state));
+itemListState$.subscribe(state => console.log(state));
 ```
 
 ### Trigger Side Effects

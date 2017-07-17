@@ -3,9 +3,10 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { curry, camelCase } from 'lodash';
 import { Action } from './interface/action';
 import { CurriedReducer, Reducer } from './interface/reducer';
+import { SideEffect } from './interface/effects';
 
 export class Oddstream {
-  public dispatcher$: BehaviorSubject<Action>;
+  private dispatcher$: BehaviorSubject<Action>;
 
   constructor() {
     this.dispatcher$ = new BehaviorSubject({ type: 'INIT' });
@@ -33,6 +34,13 @@ export class Oddstream {
 
   public getDispatcher$(): BehaviorSubject<Action> {
     return this.dispatcher$;
+  }
+
+  public runSideEffects(...sideEffects: SideEffect[]) {
+    // const sideEffects = Array.from(arguments);
+    sideEffects.map(sideEffect => {
+      sideEffect(this.dispatcher$).subscribe(action => this.dispatcher$.next(action));
+    })
   }
 }
 

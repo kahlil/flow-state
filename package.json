@@ -7,7 +7,7 @@
   "scripts": {
     "tsc": "tsc",
     "build": "run-s clean tsc",
-    "ava": "ava --tap | tap-nyan",
+    "ava": "ava --verbose --color",
     "clean": "rimraf build",
     "test": "run-s build ava",
     "prepublishOnly": "npm run build"

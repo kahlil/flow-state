@@ -28,6 +28,15 @@ var Oddstream = (function () {
     Oddstream.prototype.getDispatcher$ = function () {
         return this.dispatcher$;
     };
+    Oddstream.prototype.runSideEffects = function () {
+        var _this = this;
+        var sideEffects = Array.from(arguments);
+        sideEffects.map(function (sideEffect) {
+            var action$ = sideEffect(_this.dispatcher$);
+            action$
+                .subscribe(function (action) { return _this.dispatcher$.next(action); });
+        });
+    };
     return Oddstream;
 }());
 exports.Oddstream = Oddstream;

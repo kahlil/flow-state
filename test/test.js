@@ -3,10 +3,12 @@ import { Observable } from 'rxjs/Observable';
 import test from 'ava';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/skip';
+import 'rxjs/add/operator/filter';
+const util = require('util');
 
 let oddstream;
 
-test.before(t => {
+test.beforeEach(t => {
   oddstream = createOddstream();
 });
 
@@ -22,10 +24,9 @@ test('dispatch()', t => {
   const dispatcher$ = oddstream.getDispatcher$();
   const returnStream = dispatcher$
     .skip(1)
-    .map(action => {
+    .subscribe(action => {
       t.deepEqual(action, { type: 'TEST_ACTION', payload: 1 }, 'Correct action is dispatched.')
-    })
-    .subscribe();
+    });
   // Set the actioncreators.
   oddstream.dispatch('TEST_ACTION', 1);
   return returnStream;
@@ -41,9 +42,23 @@ test('makeStateStream()', t => {
         return state;
       }
     }, [])
-    .map(state => {
+    .subscribe(state => {
       t.deepEqual(state, [1], 'Correct state is created.')
-    })
-    .subscribe();
+    });
   return returnStream;
 });
+
+test('runSideEffects()', t => {
+  t.plan(1)
+  const sideEffect = action$ => action$
+    .filter(({ type }) => type === 'INIT')
+    .map(action => ({ type: 'FX_ACTION' }));
+  oddstream.runSideEffects(sideEffect);
+  const dispatcher$ = oddstream.getDispatcher$();
+  const returnStream = dispatcher$
+    .filter(({ type }) => type === 'FX_ACTION')
+    .subscribe(({ type }) => {
+      t.is(type, 'FX_ACTION', 'Correct state is created.');
+    });
+  return returnStream;
+})
