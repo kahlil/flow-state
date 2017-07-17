@@ -22,7 +22,7 @@ In your components dispatch actions by passing the action constant and optionall
 an action payload. The payload can be any value.
 
 ```js
-oddstream.dispatch('SOME_ACTION', { some: 'state' });
+oddstream.dispatch({ type: 'SOME_ACTION', payload: { some: 'state' } });
 ```
 
 ### Create A State Stream Based On Reducers
