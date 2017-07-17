@@ -52,28 +52,30 @@ itemListState$.subscribe(state => console.log(state));
 ```
 
 ### Trigger Side Effects
-You can trigger your side effects by getting the dispatcher stream
-and firing effects on specific actions.
+You can trigger your side effects similar to redux-observable 
+by listening to the actions stream, triggering your side effect 
+and return a new action.
 
-When the side effects are done, they themselves can fire actions
-to introduce new changes to the user interface.
+Each side effect is a function and has to be passed to 
+`oddstream.runSideEffects`. 
+
+The action that the result of each side effect maps to
 
 ```js
 // An api to fire certain side effects.
 const serverApi = new serverApi();
-const dispatcher$ = getDispatcher$();
 
-dispatcher$
-  .subscribe(action => {
-    switch(action.type) {
-      case 'DELETE_ITEM':
-        serverApi.deleteItem(action.payload);
-        break;
-      case 'ADD_ITEM':
-        serverApi.addItem(action.payload);
-        break;
-    }
-  });
+const sideEffect1 = action$ => action$
+  .filter(action => action.type === 'SOME_ACTION')
+  .switchMap(action => serverApi.deleteItem(action.payload))
+  .map(response => ({ type: 'RESPONSE_ACTION1', payload: response }));
+
+const sideEffect1 = action$ => action$
+  .filter(action => action.type === 'SOME_ACTION')
+  .switchMap(action => serverApi.addItem(action.payload))
+  .map(response => ({ type: 'RESPONSE_ACTION1', payload: response }));
+
+oddStream.runSideEffects(sideEffect1, sideEffect2);
 ```
 
 ## License
