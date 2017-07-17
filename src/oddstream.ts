@@ -37,10 +37,9 @@ export class Oddstream {
   }
 
   public runSideEffects(...sideEffects: SideEffect[]) {
-    // const sideEffects = Array.from(arguments);
     sideEffects.map(sideEffect => {
       sideEffect(this.dispatcher$).subscribe(action => this.dispatcher$.next(action));
-    })
+    });
   }
 }
 

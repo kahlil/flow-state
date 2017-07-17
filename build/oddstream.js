@@ -30,11 +30,12 @@ var Oddstream = (function () {
     };
     Oddstream.prototype.runSideEffects = function () {
         var _this = this;
-        var sideEffects = Array.from(arguments);
+        var sideEffects = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            sideEffects[_i] = arguments[_i];
+        }
         sideEffects.map(function (sideEffect) {
-            var action$ = sideEffect(_this.dispatcher$);
-            action$
-                .subscribe(function (action) { return _this.dispatcher$.next(action); });
+            sideEffect(_this.dispatcher$).subscribe(function (action) { return _this.dispatcher$.next(action); });
         });
     };
     return Oddstream;
