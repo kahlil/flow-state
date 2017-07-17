@@ -75,7 +75,7 @@ const sideEffect1 = action$ => action$
   .switchMap(action => serverApi.addItem(action.payload))
   .map(response => ({ type: 'RESPONSE_ACTION1', payload: response }));
 
-oddStream.runSideEffects(sideEffect1, sideEffect2);
+oddstream.runSideEffects(sideEffect1, sideEffect2);
 ```
 
 ## License
