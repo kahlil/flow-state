@@ -38,6 +38,7 @@ depend on one another.
 const itemListReducers = {
   deleteItem: (action, state) => state
     .filter(item => state.filter(item.id !== action.payload.id)),
+    
   addItem: (action, state) => [...state, action.payload],
   // ...
 };
