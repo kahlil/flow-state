@@ -19,8 +19,7 @@
     "es6-shim": "^0.35.3",
     "lodash.camelcase": "^4.3.0",
     "lodash.curry": "^4.1.1",
-    "rxjs": "^5.4.2",
-    "rxjs-es": "^5.0.0-beta.12"
+    "rxjs": "^5.4.2"
   },
   "devDependencies": {
     "@types/es6-shim": "^0.31.34",
@@ -36,7 +35,8 @@
     "rollup": "^0.45.2",
     "tap-nyan": "^1.1.0",
     "tslint": "^5.5.0",
+    "ts-loader": "^2.3.0",
     "typescript": "^2.4.1",
-    "uglify-js": "^3.0.24"
+    "webpack": "^3.3.0"
   }
 }
