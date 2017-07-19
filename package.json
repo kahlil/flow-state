@@ -8,7 +8,7 @@
     "tsc": "tsc",
     "build": "run-s clean tsc",
     "ava": "ava --verbose --color",
-    "clean": "rimraf build",
+    "clean": "rimraf dist",
     "test": "run-s build ava",
     "prepublishOnly": "npm run build"
   },
@@ -34,9 +34,9 @@
     "rimraf": "^2.6.1",
     "rollup": "^0.45.2",
     "tap-nyan": "^1.1.0",
-    "tslint": "^5.5.0",
     "ts-loader": "^2.3.0",
     "typescript": "^2.4.1",
+    "tslint": "^5.5.0",
     "webpack": "^3.3.0"
   }
 }
