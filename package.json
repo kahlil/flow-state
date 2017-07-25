@@ -3,7 +3,7 @@
   "version": "6.0.0",
   "description": "A simple Redux-type library entirely based on RxJS streams. This is an easy way to introduce a stream-based unidirectional dataflow into your app.",
   "main": "dist/es5/index.js",
-  "typings": "build/index.d.ts",
+  "typings": "dist/typings/index.d.ts",
   "scripts": {
     "tsc": "tsc",
     "build:umd": "webpack",
@@ -12,7 +12,7 @@
     "build:dist:prod": "run-p build:umd:prod tsc",
     "build": "run-s clean build:dist",
     "build:prod": "run-s clean build:dist:prod",
-    "ava": "ava --verbose --color",
+    "ava": "ava",
     "test": "run-s build ava",
     "clean": "rimraf dist",
     "prepublishOnly": "npm run build"
