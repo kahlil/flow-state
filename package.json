@@ -2,29 +2,30 @@
   "name": "oddstream",
   "version": "6.0.0",
   "description": "A simple Redux-type library entirely based on RxJS streams. This is an easy way to introduce a stream-based unidirectional dataflow into your app.",
-  "main": "build/index.js",
+  "main": "dist/es5/index.js",
   "typings": "build/index.d.ts",
   "scripts": {
     "tsc": "tsc",
-    "build": "run-s clean tsc",
+    "build:umd": "webpack",
+    "build:umd:prod": "NODE_ENV=\"production\" webpack",
+    "build:dist": "run-p build:umd tsc",
+    "build:dist:prod": "run-p build:umd:prod tsc",
+    "build": "run-s clean build:dist",
+    "build:prod": "run-s clean build:dist:prod",
     "ava": "ava --verbose --color",
-    "clean": "rimraf dist",
     "test": "run-s build ava",
+    "clean": "rimraf dist",
     "prepublishOnly": "npm run build"
   },
   "author": "Kahlil Lechelt",
   "license": "MIT",
   "repository": "kahlil/oddstream",
   "dependencies": {
-    "es6-shim": "^0.35.3",
     "lodash.camelcase": "^4.3.0",
     "lodash.curry": "^4.1.1",
     "rxjs": "^5.4.2"
   },
   "devDependencies": {
-    "@types/es6-shim": "^0.31.34",
-    "@types/lodash.camelcase": "^4.3.2",
-    "@types/lodash.curry": "^4.1.2",
     "@types/node": "^8.0.11",
     "ava": "^0.20.0",
     "browserify": "^14.4.0",
@@ -35,8 +36,8 @@
     "rollup": "^0.45.2",
     "tap-nyan": "^1.1.0",
     "ts-loader": "^2.3.0",
-    "typescript": "^2.4.1",
     "tslint": "^5.5.0",
+    "typescript": "^2.4.1",
     "webpack": "^3.3.0"
   }
 }

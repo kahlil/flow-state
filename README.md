@@ -63,18 +63,20 @@ Each side effect is a function and has to be passed to
 The action that the result of each side effect maps to
 
 ```js
-// An api to fire certain side effects.
+// An imaginary API.
 const serverApi = new serverApi();
 
 const sideEffect1 = action$ => action$
-  .filter(action => action.type === 'SOME_ACTION')
+  .filter(action => action.type === 'DELETE_ITEM')
   .switchMap(action => serverApi.deleteItem(action.payload))
-  .map(response => ({ type: 'RESPONSE_ACTION1', payload: response }));
+  .map(response => ({ type: 'RECEIVE_ITEMS', payload: response }))
+  .catch(response => ({ type: 'DELETE_ITEM_ERROR', payload: response.error });
 
 const sideEffect1 = action$ => action$
-  .filter(action => action.type === 'SOME_ACTION')
+  .filter(action => action.type === 'ADD_ITEM')
   .switchMap(action => serverApi.addItem(action.payload))
-  .map(response => ({ type: 'RESPONSE_ACTION1', payload: response }));
+  .map(response => ({ type: 'RECEIVE_ITEMS', payload: response }))
+  .catch(response => ({ type: 'ADD_ITEM_ERROR', payload: response.error });
 
 oddstream.runSideEffects(sideEffect1, sideEffect2);
 ```
