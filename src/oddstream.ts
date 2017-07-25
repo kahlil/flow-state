@@ -1,65 +1,46 @@
-import { Subject } from 'rxjs/Subject';
+import * as camelcase from 'lodash.camelcase';
+import * as curry from 'lodash.curry';
 import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
-import { curry, camelCase } from 'lodash';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Action } from './interface/action';
 import { CurriedReducer, Reducer } from './interface/reducer';
-import * as errorTexts from './error-texts';
+import { SideEffect } from './interface/effects';
 
 export class Oddstream {
-  public dispatcher$: Subject<Action>;
-  private actionCreators = {};
+  private dispatcher$: BehaviorSubject<Action>;
 
   constructor() {
-    this.dispatcher$ = new Subject();
+    this.dispatcher$ = new BehaviorSubject({ type: 'INIT' });
   }
 
-  dispatch(actionType: string, payload$?: any): Subscription {
-    if (!(payload$ instanceof Observable)) {
-      payload$ = Observable.of(payload$);
+  public dispatch(type: string, payload?: any): void {
+    this.dispatcher$.next({ type, payload });
+  }
+
+  public makeStateStream(reducers: any, initialState: any = []): Observable<any> {
+    const actionToReducer = (actionType: string): Reducer => reducers[camelcase(actionType)];
+    const hasReducerForAction = (action: Action) => !!actionToReducer(action.type);
+    const applyActionOnReducer = (action: Action): CurriedReducer => {
+      return curry(actionToReducer(action.type))(action);
     }
-    const actionCreator$ = this.mapToActionCreator(payload$, actionType);
-    const nextFn = (payload: any) => this.dispatcher$.next(payload);
-    const errorFn = (error: any) => console.error('🔥', error);
-    return actionCreator$.subscribe(nextFn, errorFn);
-  }
-
-  makeStateStream(reducers: any, initialState: any = []): Observable<any> {
-    const getReducer = (actionType: string): Reducer => reducers[camelCase(actionType)];
-    const mapReducer = (action: Action): CurriedReducer => curry(getReducer(action.type))(action);
+    const applyStateOnReducer = (state: any, reducerWithAction: CurriedReducer): any => {
+      return reducerWithAction(state);
+    }
     return this.dispatcher$
-      .filter((action: Action) => !!getReducer(action.type))
-      .map(mapReducer)
-      .scan((state: any, reducer: CurriedReducer) => reducer(state), initialState)
+      .filter(hasReducerForAction)
+      .map(applyActionOnReducer)
+      .scan(applyStateOnReducer, initialState)
       .share();
   }
 
-  mapToActionCreator(stream: Observable<any>, actionType: string): Observable<any> {
-    const actionCreator = this.actionCreators[camelCase(actionType)];
-    if (!actionCreator) {
-      throw new Error(errorTexts.missingActionCreator(actionType));
-    }
-    return stream.map(actionCreator);
-  }
-
-  setActionCreators(actionCreators: any) {
-    this.actionCreators = actionCreators;
-  }
-
-  addActionCreators(actionCreators: any) {
-    const availableActionCreatorKeys = Object.keys(this.actionCreators);
-    // Throw an error if an action creator key already exists.
-    Object.keys(actionCreators).forEach(key => {
-      if (key in availableActionCreatorKeys) {
-        throw new Error(errorTexts.duplicateActionCreator(key));
-      }
-    });
-    // Merge the new action creators into `this.actionCreators`.
-    Object.assign(this.actionCreators, actionCreators);
-  }
-
-  getDispatcher$(): Subject<Action> {
+  public getDispatcher$(): BehaviorSubject<Action> {
     return this.dispatcher$;
+  }
+
+  public runSideEffects(...sideEffects: SideEffect[]) {
+    sideEffects.map(sideEffect => {
+      sideEffect(this.dispatcher$).subscribe(action => this.dispatcher$.next(action));
+    });
   }
 }
 
