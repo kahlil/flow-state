@@ -1,5 +1,7 @@
 # oddstream
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/kahlil/oddstream.svg)](https://greenkeeper.io/)
+
 > One Direction Data Stream.
 
 Dead simple Redux with RxJS streams. This is an easy way to introduce a 
