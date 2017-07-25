@@ -6,8 +6,8 @@
   "typings": "dist/typings/index.d.ts",
   "scripts": {
     "tsc": "tsc",
-    "build:umd": "webpack",
-    "build:umd:prod": "NODE_ENV=\"production\" webpack",
+    "build:umd": "webpack --config webpack.config.js",
+    "build:umd:prod": "NODE_ENV=\"production\" webpack --config webpack.config.js",
     "build:dist": "run-p build:umd tsc",
     "build:dist:prod": "run-p build:umd:prod tsc",
     "build": "run-s clean build:dist",
