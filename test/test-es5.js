@@ -1,4 +1,4 @@
-import { createOddstream } from '../dist/es2015';
+import { createOddstream } from '../dist/es5';
 import { Observable } from 'rxjs/Observable';
 import test from 'ava';
 import 'rxjs/add/observable/of';
