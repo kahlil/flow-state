@@ -7,11 +7,7 @@ import { CurriedReducer, Reducer } from './interface/reducer';
 import { SideEffect } from './interface/effects';
 
 export class Oddstream {
-  private action$: BehaviorSubject<Action>;
-
-  constructor() {
-    this.action$ = new BehaviorSubject({ type: 'INIT' });
-  }
+  private action$: BehaviorSubject<Action> = new BehaviorSubject({ type: 'INIT' });
 
   public dispatch(action: Action): void {
     this.action$.next(action);
