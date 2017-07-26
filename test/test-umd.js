@@ -12,31 +12,31 @@ test.beforeEach(t => {
   oddstream = createOddstream();
 });
 
-test('getDispatcher$()', t => {
+test('getAction$()', t => {
   t.plan(2);
-  const dispatcher$ = oddstream.getDispatcher$();
+  const dispatcher$ = oddstream.getAction$();
 	t.is(typeof dispatcher$.next, 'function', 'The dispatcher stream has a next function.');
 	t.is(typeof dispatcher$.subscribe, 'function', 'The dispatcher stream has a subscribe function.');
 });
 
 test('dispatch()', t => {
   t.plan(1);
-  const dispatcher$ = oddstream.getDispatcher$();
-  const returnStream = dispatcher$
+  const action$ = oddstream.getAction$();
+  const return$ = action$
     .skip(1)
     .subscribe(action => {
       t.deepEqual(action, { type: 'TEST_ACTION', payload: 1 }, 'Correct action is dispatched.')
     });
   // Set the actioncreators.
   oddstream.dispatch({ type: 'TEST_ACTION', payload: 1 });
-  return returnStream;
+  return return$;
 });
 
-test('makeStateStream()', t => {
+test('createState$()', t => {
   t.plan(1);  
   oddstream.dispatch({ type: 'TEST_ACTION', payload: 1 });
-  const returnStream = oddstream
-    .makeStateStream({ 
+  const return$ = oddstream
+    .createState$({ 
       testAction: (action, state) => {
         state.push(action.payload);
         return state;
@@ -45,7 +45,7 @@ test('makeStateStream()', t => {
     .subscribe(state => {
       t.deepEqual(state, [1], 'Correct state is created.')
     });
-  return returnStream;
+  return return$;
 });
 
 test('runSideEffects()', t => {
@@ -54,11 +54,11 @@ test('runSideEffects()', t => {
     .filter(({ type }) => type === 'INIT')
     .map(action => ({ type: 'FX_ACTION' }));
   oddstream.runSideEffects(sideEffect);
-  const dispatcher$ = oddstream.getDispatcher$();
-  const returnStream = dispatcher$
+  const action$ = oddstream.getAction$();
+  const return$ = action$
     .filter(({ type }) => type === 'FX_ACTION')
     .subscribe(({ type }) => {
       t.is(type, 'FX_ACTION', 'Correct state is created.');
     });
-  return returnStream;
+  return return$;
 })

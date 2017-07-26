@@ -45,7 +45,7 @@ const itemListReducers = {
   // ...
 };
 
-itemListState$ = oddstream.makeStateStream(itemListReducers, initialState);
+itemListState$ = oddstream.createState$(itemListReducers, initialState);
 ```
 
 In your component you can now subscribe to the component state stream: 

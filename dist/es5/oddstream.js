@@ -5,12 +5,12 @@ var curry = require("lodash.curry");
 var BehaviorSubject_1 = require("rxjs/BehaviorSubject");
 var Oddstream = (function () {
     function Oddstream() {
-        this.dispatcher$ = new BehaviorSubject_1.BehaviorSubject({ type: 'INIT' });
+        this.action$ = new BehaviorSubject_1.BehaviorSubject({ type: 'INIT' });
     }
     Oddstream.prototype.dispatch = function (action) {
-        this.dispatcher$.next(action);
+        this.action$.next(action);
     };
-    Oddstream.prototype.makeStateStream = function (reducers, initialState) {
+    Oddstream.prototype.createState$ = function (reducers, initialState) {
         if (initialState === void 0) { initialState = []; }
         var actionToReducer = function (actionType) { return reducers[camelcase(actionType)]; };
         var hasReducerForAction = function (action) { return !!actionToReducer(action.type); };
@@ -20,14 +20,14 @@ var Oddstream = (function () {
         var applyStateOnReducer = function (state, reducerWithAction) {
             return reducerWithAction(state);
         };
-        return this.dispatcher$
+        return this.action$
             .filter(hasReducerForAction)
             .map(applyActionOnReducer)
             .scan(applyStateOnReducer, initialState)
             .share();
     };
-    Oddstream.prototype.getDispatcher$ = function () {
-        return this.dispatcher$;
+    Oddstream.prototype.getAction$ = function () {
+        return this.action$;
     };
     Oddstream.prototype.runSideEffects = function () {
         var _this = this;
@@ -36,7 +36,7 @@ var Oddstream = (function () {
             sideEffects[_i] = arguments[_i];
         }
         sideEffects.map(function (sideEffect) {
-            sideEffect(_this.dispatcher$).subscribe(function (action) { return _this.dispatcher$.next(action); });
+            sideEffect(_this.action$).subscribe(function (action) { return _this.action$.next(action); });
         });
     };
     return Oddstream;
