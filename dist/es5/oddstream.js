@@ -7,8 +7,8 @@ var Oddstream = (function () {
     function Oddstream() {
         this.dispatcher$ = new BehaviorSubject_1.BehaviorSubject({ type: 'INIT' });
     }
-    Oddstream.prototype.dispatch = function (type, payload) {
-        this.dispatcher$.next({ type: type, payload: payload });
+    Oddstream.prototype.dispatch = function (action) {
+        this.dispatcher$.next(action);
     };
     Oddstream.prototype.makeStateStream = function (reducers, initialState) {
         if (initialState === void 0) { initialState = []; }

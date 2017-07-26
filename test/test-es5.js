@@ -28,13 +28,13 @@ test('dispatch()', t => {
       t.deepEqual(action, { type: 'TEST_ACTION', payload: 1 }, 'Correct action is dispatched.')
     });
   // Set the actioncreators.
-  oddstream.dispatch('TEST_ACTION', 1);
+  oddstream.dispatch({ type: 'TEST_ACTION', payload: 1 });
   return returnStream;
 });
 
 test('makeStateStream()', t => {
   t.plan(1);  
-  oddstream.dispatch('TEST_ACTION', 1);
+  oddstream.dispatch({ type: 'TEST_ACTION', payload: 1 });
   const returnStream = oddstream
     .makeStateStream({ 
       testAction: (action, state) => {

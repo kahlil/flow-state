@@ -13,8 +13,8 @@ export class Oddstream {
     this.dispatcher$ = new BehaviorSubject({ type: 'INIT' });
   }
 
-  public dispatch(type: string, payload?: any): void {
-    this.dispatcher$.next({ type, payload });
+  public dispatch(action: Action): void {
+    this.dispatcher$.next(action);
   }
 
   public makeStateStream(reducers: any, initialState: any = []): Observable<any> {
