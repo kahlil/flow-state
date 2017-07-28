@@ -25,8 +25,7 @@ export class Oddstream {
     return this.action$
       .filter(hasReducerForAction)
       .map(applyActionOnReducer)
-      .scan(applyStateOnReducer, initialState)
-      .share();
+      .scan(applyStateOnReducer, initialState);
   }
 
   public getAction$(): BehaviorSubject<Action> {
