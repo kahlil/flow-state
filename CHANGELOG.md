@@ -1,3 +1,10 @@
+# v8.0.0
+
+## Breaking Change
+- API changed quite a bit to be more constitent
+- added handling of side effects inspired by redux-observable
+
+
 # v5.0.0
 
 ## Breaking Changes
