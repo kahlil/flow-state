@@ -15,7 +15,8 @@
     "ava": "ava",
     "test": "run-s build ava",
     "clean": "rimraf dist",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "np": "np"
   },
   "author": "Kahlil Lechelt",
   "license": "MIT",
@@ -33,6 +34,7 @@
     "browserify": "^14.4.0",
     "derequire": "^2.0.6",
     "mkdirp": "^0.5.1",
+    "np": "^2.18.3",
     "npm-run-all": "^4.0.2",
     "rimraf": "^2.6.1",
     "rollup": "^0.45.2",
