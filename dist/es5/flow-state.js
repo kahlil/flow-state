@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var camelcase = require("lodash.camelcase");
 var curry = require("lodash.curry");
 var BehaviorSubject_1 = require("rxjs/BehaviorSubject");
-var FlowState = (function () {
+var FlowState = /** @class */ (function () {
     function FlowState() {
         this.action$ = new BehaviorSubject_1.BehaviorSubject({ type: 'INIT' });
     }
