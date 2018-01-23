@@ -1,5 +1,5 @@
 {
-  "name": "flow-state",
+  "name": "@kahlil/flow-state",
   "version": "9.0.2",
   "description": "A simple Redux-type library entirely based on RxJS streams. This is an easy way to introduce a stream-based unidirectional dataflow into your app.",
   "main": "dist/es5/index.js",
