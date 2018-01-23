@@ -15,6 +15,7 @@
     "ava": "ava",
     "test": "run-s build ava",
     "clean": "rimraf dist",
+    "pub": "npm version patch && npm publish && ga . && gcmsg 'new build' gp && gp --tags",
     "prepublishOnly": "npm run build"
   },
   "author": "Kahlil Lechelt",

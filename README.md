@@ -1,7 +1,5 @@
 # flow-state
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/kahlil/oddstream.svg)](https://greenkeeper.io/)
-
 Dead simple Redux and Redux-Observable with RxJS streams. This is an easy way to introduce a 
 stream-based unidirectional dataflow into your app.
 
@@ -58,7 +56,7 @@ by listening to the actions stream, triggering your side effect
 and return a new action.
 
 Each side effect is a function and has to be passed to 
-`oddstream.runSideEffects`. 
+`flowState.runSideEffects`. 
 
 The action that the result of each side effect maps to
 
