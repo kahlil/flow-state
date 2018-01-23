@@ -1,22 +1,20 @@
-# oddstream
+# flow-state
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/kahlil/oddstream.svg)](https://greenkeeper.io/)
 
-> One Direction Data Stream.
-
-Dead simple Redux with RxJS streams. This is an easy way to introduce a 
+Dead simple Redux and Redux-Observable with RxJS streams. This is an easy way to introduce a 
 stream-based unidirectional dataflow into your app.
 
 ## Install
 
-`npm install oddstream`
+`npm install @kahlil/flow-state`
 
 ## Usage
 
 ```js
-import { createOddstream } from 'oddstream';
+import { createFlowState } from '@kahlil/flow-state';
 
-const oddstream = createOddstream();
+const flowState = createFlowState();
 ```
 
 ### Dispatch Actions
@@ -24,7 +22,7 @@ In your components dispatch actions by passing the action constant and optionall
 an action payload. The payload can be any value.
 
 ```js
-oddstream.dispatch({ type: 'SOME_ACTION', payload: { some: 'state' } });
+flowState.dispatch({ type: 'SOME_ACTION', payload: { some: 'state' } });
 ```
 
 ### Create A State Stream Based On Reducers
@@ -45,7 +43,7 @@ const itemListReducers = {
   // ...
 };
 
-itemListState$ = oddstream.createState$(itemListReducers, initialState);
+itemListState$ = flowState.createState$(itemListReducers, initialState);
 ```
 
 In your component you can now subscribe to the component state stream: 
@@ -67,6 +65,7 @@ The action that the result of each side effect maps to
 ```js
 // An imaginary API.
 const serverApi = new serverApi();
+const action$ = flowState.getAction$();
 
 const sideEffect1 = action$ => action$
   .filter(action => action.type === 'DELETE_ITEM')
@@ -80,7 +79,7 @@ const sideEffect1 = action$ => action$
   .map(response => ({ type: 'RECEIVE_ITEMS', payload: response }))
   .catch(response => ({ type: 'ADD_ITEM_ERROR', payload: response.error });
 
-oddstream.runSideEffects(sideEffect1, sideEffect2);
+flowState.runSideEffects(sideEffect1, sideEffect2);
 ```
 
 ## License
