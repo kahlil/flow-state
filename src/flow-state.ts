@@ -6,7 +6,7 @@ import { Action } from './interface/action';
 import { CurriedReducer, Reducer } from './interface/reducer';
 import { SideEffect } from './interface/effects';
 
-export class Oddstream {
+export class FlowState {
   private action$: BehaviorSubject<Action> = new BehaviorSubject({ type: 'INIT' });
 
   public dispatch(action: Action): void {
@@ -39,6 +39,6 @@ export class Oddstream {
   }
 }
 
-export function createOddstream(): Oddstream {
-  return new Oddstream();
+export function createFlowState(): FlowState {
+  return new FlowState();
 }

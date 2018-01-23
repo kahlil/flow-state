@@ -7,4 +7,4 @@ import 'rxjs/add/operator/skip';
 
 import 'rxjs/add/observable/of';
 
-export * from './oddstream';
+export * from './flow-state';

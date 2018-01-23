@@ -10,5 +10,5 @@ require("rxjs/add/operator/do");
 require("rxjs/add/operator/share");
 require("rxjs/add/operator/skip");
 require("rxjs/add/observable/of");
-__export(require("./oddstream"));
+__export(require("./flow-state"));
 //# sourceMappingURL=index.js.map

@@ -3,14 +3,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var camelcase = require("lodash.camelcase");
 var curry = require("lodash.curry");
 var BehaviorSubject_1 = require("rxjs/BehaviorSubject");
-var Oddstream = (function () {
-    function Oddstream() {
+var FlowState = (function () {
+    function FlowState() {
         this.action$ = new BehaviorSubject_1.BehaviorSubject({ type: 'INIT' });
     }
-    Oddstream.prototype.dispatch = function (action) {
+    FlowState.prototype.dispatch = function (action) {
         this.action$.next(action);
     };
-    Oddstream.prototype.createState$ = function (reducers, initialState) {
+    FlowState.prototype.createState$ = function (reducers, initialState) {
         if (initialState === void 0) { initialState = []; }
         var actionToReducer = function (actionType) { return reducers[camelcase(actionType)]; };
         var hasReducerForAction = function (action) { return !!actionToReducer(action.type); };
@@ -23,13 +23,12 @@ var Oddstream = (function () {
         return this.action$
             .filter(hasReducerForAction)
             .map(applyActionOnReducer)
-            .scan(applyStateOnReducer, initialState)
-            .share();
+            .scan(applyStateOnReducer, initialState);
     };
-    Oddstream.prototype.getAction$ = function () {
+    FlowState.prototype.getAction$ = function () {
         return this.action$;
     };
-    Oddstream.prototype.runSideEffects = function () {
+    FlowState.prototype.runSideEffects = function () {
         var _this = this;
         var sideEffects = [];
         for (var _i = 0; _i < arguments.length; _i++) {
@@ -39,11 +38,11 @@ var Oddstream = (function () {
             sideEffect(_this.action$).subscribe(function (action) { return _this.action$.next(action); });
         });
     };
-    return Oddstream;
+    return FlowState;
 }());
-exports.Oddstream = Oddstream;
-function createOddstream() {
-    return new Oddstream();
+exports.FlowState = FlowState;
+function createFlowState() {
+    return new FlowState();
 }
-exports.createOddstream = createOddstream;
-//# sourceMappingURL=oddstream.js.map
+exports.createFlowState = createFlowState;
+//# sourceMappingURL=flow-state.js.map
