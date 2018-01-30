@@ -1,7 +1,14 @@
-# flow-state
+# FlowState 🌊
 
 Dead simple Redux and Redux-Observable with RxJS streams. This is an easy way to introduce a 
 stream-based unidirectional dataflow into your app.
+
+## Highlights
+
+- Inspired by Redux and redux-observable
+- The state is delivered with streams
+- Reducers are just functions, no switch-case
+- Isolate side effects that map back to actions
 
 ## Install
 

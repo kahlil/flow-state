@@ -6,6 +6,10 @@ var BehaviorSubject_1 = require("rxjs/BehaviorSubject");
 var FlowState = /** @class */ (function () {
     function FlowState() {
         this.action$ = new BehaviorSubject_1.BehaviorSubject({ type: 'INIT' });
+        this.dispatch = this.dispatch.bind(this);
+        this.createState$ = this.createState$.bind(this);
+        this.getAction$ = this.getAction$.bind(this);
+        this.runSideEffects = this.runSideEffects.bind(this);
     }
     FlowState.prototype.dispatch = function (action) {
         this.action$.next(action);

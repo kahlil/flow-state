@@ -9,6 +9,13 @@ import { SideEffect } from './interface/effects';
 export class FlowState {
   private action$: BehaviorSubject<Action> = new BehaviorSubject({ type: 'INIT' });
 
+  constructor() {
+    this.dispatch = this.dispatch.bind(this);
+    this.createState$ = this.createState$.bind(this);
+    this.getAction$ = this.getAction$.bind(this);
+    this.runSideEffects = this.runSideEffects.bind(this);
+  }
+
   public dispatch(action: Action): void {
     this.action$.next(action);
   }
