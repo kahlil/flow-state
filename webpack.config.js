@@ -20,7 +20,7 @@ module.exports = {
   },
   externals: {
     // Use external version of React
-    "rxjs": "RxJS"
+    "rxjs": "rxjs"
   },
   module: {
     loaders: [
