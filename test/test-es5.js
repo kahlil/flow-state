@@ -1,5 +1,5 @@
 import { createFlowState } from '../dist/es5';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import test from 'ava';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/skip';
