@@ -42,11 +42,6 @@ jspm_packages
 .node_repl_history
 
 
-### Typings ###
-## Ignore downloaded typings
-typings
-
-
 ### OSX ###
 *.DS_Store
 .AppleDouble

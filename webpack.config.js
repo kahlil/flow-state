@@ -18,6 +18,10 @@ module.exports = {
     // Add `.ts` and `.tsx` as a resolvable extension.
     extensions: ['.ts', '.tsx', '.js']
   },
+  externals: {
+    // Use external version of React
+    "rxjs": "RxJS"
+  },
   module: {
     loaders: [
       // all files with a `.ts` or `.tsx` extension will be handled by `ts-loader`

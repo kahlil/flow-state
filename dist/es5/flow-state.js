@@ -1,33 +1,33 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var operators_1 = require("rxjs/operators");
+var rxjs_1 = require("rxjs");
 var camelcase = require("lodash.camelcase");
 var curry = require("lodash.curry");
-var BehaviorSubject_1 = require("rxjs/BehaviorSubject");
 var FlowState = /** @class */ (function () {
     function FlowState() {
-        this.action$ = new BehaviorSubject_1.BehaviorSubject({ type: 'INIT' });
-        this.dispatch = this.dispatch.bind(this);
-        this.createState$ = this.createState$.bind(this);
-        this.getAction$ = this.getAction$.bind(this);
-        this.runSideEffects = this.runSideEffects.bind(this);
+        this.action$ = new rxjs_1.BehaviorSubject({
+            type: 'INIT',
+        });
     }
     FlowState.prototype.dispatch = function (action) {
         this.action$.next(action);
     };
     FlowState.prototype.createState$ = function (reducers, initialState) {
         if (initialState === void 0) { initialState = []; }
-        var actionToReducer = function (actionType) { return reducers[camelcase(actionType)]; };
-        var hasReducerForAction = function (action) { return !!actionToReducer(action.type); };
+        var actionToReducer = function (actionType) {
+            return reducers[camelcase(actionType)];
+        };
+        var hasReducerForAction = function (action) {
+            return !!actionToReducer(action.type);
+        };
         var applyActionOnReducer = function (action) {
             return curry(actionToReducer(action.type))(action);
         };
         var applyStateOnReducer = function (state, reducerWithAction) {
             return reducerWithAction(state);
         };
-        return this.action$
-            .filter(hasReducerForAction)
-            .map(applyActionOnReducer)
-            .scan(applyStateOnReducer, initialState);
+        return this.action$.pipe(operators_1.filter(hasReducerForAction), operators_1.map(applyActionOnReducer), operators_1.scan(applyStateOnReducer, initialState), operators_1.publishReplay(1));
     };
     FlowState.prototype.getAction$ = function () {
         return this.action$;
