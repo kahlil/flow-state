@@ -15,6 +15,7 @@ var FlowState = /** @class */ (function () {
     };
     FlowState.prototype.createState$ = function (reducers, initialState) {
         if (initialState === void 0) { initialState = []; }
+        var state$ = new rxjs_1.BehaviorSubject(initialState);
         var actionToReducer = function (actionType) {
             return reducers[camelcase(actionType)];
         };
@@ -27,7 +28,10 @@ var FlowState = /** @class */ (function () {
         var applyStateOnReducer = function (state, reducerWithAction) {
             return reducerWithAction(state);
         };
-        return this.action$.pipe(operators_1.filter(hasReducerForAction), operators_1.map(applyActionOnReducer), operators_1.scan(applyStateOnReducer, initialState), operators_1.publishReplay(1));
+        this.action$
+            .pipe(operators_1.filter(hasReducerForAction), operators_1.map(applyActionOnReducer), operators_1.scan(applyStateOnReducer, initialState))
+            .subscribe(function (state) { return state$.next(state); });
+        return state$;
     };
     FlowState.prototype.getAction$ = function () {
         return this.action$;
