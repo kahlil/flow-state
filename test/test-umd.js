@@ -1,5 +1,5 @@
 import { createFlowState } from '../dist/umd/flow-state.umd';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import test from 'ava';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/skip';
