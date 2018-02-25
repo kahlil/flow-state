@@ -43,6 +43,6 @@
     "ts-loader": "^2.3.0",
     "tslint": "^5.5.0",
     "typescript": "^2.7.1",
-    "webpack": "^3.3.0"
+    "webpack": "^4.0.0"
   }
 }
