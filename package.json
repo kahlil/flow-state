@@ -32,7 +32,7 @@
   "devDependencies": {
     "@types/node": "^10.0.3",
     "ava": "^0.21.0",
-    "browserify": "^14.4.0",
+    "browserify": "^15.0.0",
     "derequire": "^2.0.6",
     "mkdirp": "^0.5.1",
     "npm-run-all": "^4.0.2",
