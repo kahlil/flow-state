@@ -1,9 +1,13 @@
+# v9.0.0
+
+## Breaking Changes
+- renamed the library from `Oddstream` to `FlowState`
+
 # v8.0.0
 
-## Breaking Change
+## Breaking Changes
 - API changed quite a bit to be more constitent
 - added handling of side effects inspired by redux-observable
-
 
 # v5.0.0
 

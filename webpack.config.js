@@ -9,14 +9,18 @@ module.exports = {
   devtool: 'inline-source-map',
   entry: './src/index.ts',
   output: {
-    filename: PROD ? 'dist/umd/oddstream.umd.min.js' : 'dist/umd/oddstream.umd.js',
-    library: 'Oddstream',
+    filename: PROD ? 'dist/umd/flow-state.umd.min.js' : 'dist/umd/flow-state.umd.js',
+    library: 'FlowState',
     libraryTarget: 'umd',
     umdNamedDefine: true
   },
   resolve: {
     // Add `.ts` and `.tsx` as a resolvable extension.
     extensions: ['.ts', '.tsx', '.js']
+  },
+  externals: {
+    // Use external version of React
+    "rxjs": "rxjs"
   },
   module: {
     loaders: [

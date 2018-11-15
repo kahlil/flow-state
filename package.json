@@ -1,6 +1,6 @@
 {
-  "name": "oddstream",
-  "version": "8.0.3",
+  "name": "@kahlil/flow-state",
+  "version": "9.1.1",
   "description": "A simple Redux-type library entirely based on RxJS streams. This is an easy way to introduce a stream-based unidirectional dataflow into your app.",
   "main": "dist/es5/index.js",
   "typings": "dist/typings/index.d.ts",
@@ -15,32 +15,34 @@
     "ava": "ava",
     "test": "run-s build ava",
     "clean": "rimraf dist",
+    "pub:patch": "npm version patch && npm publish && git add . && git commit -m 'new build' git push && git push --tags",
     "prepublishOnly": "npm run build"
   },
   "author": "Kahlil Lechelt",
   "license": "MIT",
-  "repository": "kahlil/oddstream",
+  "repository": "kahlil/flow-state",
   "peerDependencies": {
-    "rxjs": "^5.0.0"
+    "rxjs": "^6.0.0-alpha.2"
   },
   "dependencies": {
     "lodash.camelcase": "^4.3.0",
-    "lodash.curry": "^4.1.1"
+    "lodash.curry": "^4.1.1",
+    "microbundle": "^0.5.0"
   },
   "devDependencies": {
-    "@types/node": "^8.0.11",
-    "rxjs": "^5.4.2",
     "ava": "^0.22.0",
-    "browserify": "^14.4.0",
+    "@types/node": "^10.0.3",
+    "browserify": "^15.0.0",
     "derequire": "^2.0.6",
     "mkdirp": "^0.5.1",
     "npm-run-all": "^4.0.2",
     "rimraf": "^2.6.1",
-    "rollup": "^0.45.2",
+    "rollup": "^0.56.3",
+    "rxjs": "^6.3.3",
     "tap-nyan": "^1.1.0",
     "ts-loader": "^2.3.0",
     "tslint": "^5.5.0",
-    "typescript": "^2.4.1",
-    "webpack": "^3.3.0"
+    "typescript": "^2.7.1",
+    "webpack": "^4.0.0"
   }
 }
