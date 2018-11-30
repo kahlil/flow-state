@@ -27,7 +27,7 @@
   "dependencies": {
     "lodash.camelcase": "^4.3.0",
     "lodash.curry": "^4.1.1",
-    "microbundle": "^0.5.0"
+    "microbundle": "^0.8.0"
   },
   "devDependencies": {
     "ava": "^0.22.0",
