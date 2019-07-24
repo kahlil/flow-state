@@ -13,10 +13,10 @@
   "types": "dist/flow-state.d.ts",
   "scripts": {
     "ava": "ava",
-    "build": "microbundle --compress false",
+    "build": "microbundle",
     "build:watch": "microbundle watch",
     "clean": "rimraf dist",
-    "prepublishOnly": "npm run build",
+    "prepublishOnly": "yarn build",
     "pub:patch": "npm version patch && npm publish && git add . && git commit -m 'new build' git push && git push --tags",
     "test": "run-s build ava",
     "tsc": "tsc"
