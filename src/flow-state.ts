@@ -1,21 +1,24 @@
-import { filter, map, scan, share, skip } from 'rxjs/operators';
-import { BehaviorSubject } from 'rxjs';
-import * as camelcase from 'lodash.camelcase';
-import * as curry from 'lodash.curry';
-import { Action } from './interface/action';
-import { CurriedReducer, Reducer } from './interface/reducer';
-import { SideEffect } from './interface/effects';
+import { filter, map, scan } from "rxjs/operators";
+import { BehaviorSubject } from "rxjs";
+import camelcase from "lodash/camelcase";
+import curry from "lodash/curry";
+import { Action } from "./interface/action";
+import { CurriedReducer, Reducer } from "./interface/reducer";
+import { SideEffect } from "./interface/effects";
 
 export class FlowState {
   private action$: BehaviorSubject<Action> = new BehaviorSubject({
-    type: 'INIT',
+    type: "INIT"
   });
 
   public dispatch(action: Action): void {
     this.action$.next(action);
   }
 
-  public createState$(reducers: any, initialState: any = []): BehaviorSubject<any> {
+  public createState$(
+    reducers: any,
+    initialState: any = []
+  ): BehaviorSubject<any> {
     const state$ = new BehaviorSubject(initialState);
     const actionToReducer = (actionType: string): Reducer =>
       reducers[camelcase(actionType)];
@@ -26,7 +29,7 @@ export class FlowState {
     };
     const applyStateOnReducer = (
       state: any,
-      reducerWithAction: CurriedReducer,
+      reducerWithAction: CurriedReducer
     ): any => {
       return reducerWithAction(state);
     };
@@ -35,7 +38,7 @@ export class FlowState {
       .pipe(
         filter(hasReducerForAction),
         map(applyActionOnReducer),
-        scan(applyStateOnReducer, initialState),
+        scan(applyStateOnReducer, initialState)
       )
       .subscribe(state => state$.next(state));
 

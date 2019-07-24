@@ -1,19 +1,15 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
+    "target": "es6",
+    "module": "ES2015",
     "noImplicitAny": false,
     "sourceMap": true,
     "declaration": true,
     "strictNullChecks": true,
     "outDir": "dist/es5",
-    "declarationDir": "dist/typings",
+    "declarationDir": "dist",
     "allowSyntheticDefaultImports": true,
-    "lib": [
-      "es2015", "dom"
-    ]
+    "lib": ["es2015", "dom"]
   },
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }
