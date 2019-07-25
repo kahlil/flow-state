@@ -1,5 +1,5 @@
 import { createFlowState } from './flow-state.js';
-import { skip, filter, map } from 'rxjs/operators';
+import { skip, map, filter } from 'rxjs/operators';
 import test from 'ava';
 
 let flowState;
@@ -61,20 +61,20 @@ test('createState$()', t => {
   return return$;
 });
 
+// @ts-ignore
 test('runSideEffects()', t => {
   t.plan(1);
   flowState = createFlowState();
-  const action$ = flowState.getAction$();
   const sideEffect = action$ =>
     action$.pipe(
       filter(({ type }) => type === 'INIT'),
       map(() => ({ type: 'FX_ACTION' }))
     );
   flowState.runSideEffects(sideEffect);
-  const return$ = action$
+  return flowState
+    .getAction$()
     .pipe(filter(({ type }) => type === 'FX_ACTION'))
     .subscribe(({ type }) =>
       t.is(type, 'FX_ACTION', 'Correct state is created.')
     );
-  return return$;
 });
