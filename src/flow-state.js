@@ -1,5 +1,4 @@
-import { filter, map, scan } from 'rxjs
-/operators';
+import { filter, map, scan } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
 import { camelCase, curry } from './lib';
 
