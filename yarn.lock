@@ -494,7 +494,7 @@
     "@types/rx-core" "*"
     "@types/rx-core-binding" "*"
 
-"@types/rx@^4.1.1":
+"@types/rx@4.1.1":
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/@types/rx/-/rx-4.1.1.tgz#598fc94a56baed975f194574e0f572fd8e627a48"
   integrity sha1-WY/JSla67ZdfGUV04PVy/Y5iekg=

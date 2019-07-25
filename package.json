@@ -5,10 +5,10 @@
   "license": "MIT",
   "repository": "kahlil/flow-state",
   "author": "Kahlil Lechelt",
+  "source": "src/flow-state.js",
   "main": "dist/flow-state.js",
   "module": "dist/flow-state.mjs",
-  "source": "src/flow-state.ts",
-  "types": "dist/flow-state.d.ts",
+  "unpkg": "dist/flow-state.umd.js",
   "scripts": {
     "ava": "ava",
     "build": "microbundle",
@@ -19,7 +19,11 @@
     "test": "run-s build ava",
     "tsc": "tsc"
   },
-  "typings": "dist/typings/index.d.ts",
+  "ava": {
+    "require": [
+      "esm"
+    ]
+  },
   "peerDependencies": {
     "lodash": ">=4.17.15",
     "rxjs": ">=6.0.0"
@@ -29,6 +33,7 @@
     "@types/node": "12.6.8",
     "@types/rx": "4.1.1",
     "ava": "2.2.0",
+    "esm": "^3.2.25",
     "lodash": "4.17.15",
     "microbundle": "0.11.0",
     "mkdirp": "0.5.1",

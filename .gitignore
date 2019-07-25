@@ -91,4 +91,5 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-.rts*
+.rts2_cache*
+dist

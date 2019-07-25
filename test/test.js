@@ -1,4 +1,4 @@
-import { createFlowState } from "../dist/flow-state.js";
+import { createFlowState } from "../src/flow-state.js";
 import { skip, filter, map } from "rxjs/operators";
 import test from "ava";
 
