@@ -1,6 +1,7 @@
-const { filter, map, scan } = require('rxjs/operators');
-const { BehaviorSubject } = require('rxjs');
-const { camelCase, curry } = require('./lib');
+import { filter, map, scan } from 'rxjs
+/operators';
+import { BehaviorSubject } from 'rxjs';
+import { camelCase, curry } from './lib';
 
 export class FlowState {
   constructor() {

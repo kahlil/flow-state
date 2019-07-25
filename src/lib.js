@@ -1,12 +1,12 @@
 // any combination of spaces and punctuation characters
 // thanks to http://stackoverflow.com/a/25575009
-var wordSeparatorsRegEx = /[\s\u2000-\u206F\u2E00-\u2E7F\\'!"#$%&()*+,\-.\/:;<=>?@\[\]^_`{|}~]+/;
+var wordSeparatorsRegEx = /[\s\u2000-\u206F\u2E00-\u2E7F\\'!"#$%&()*+,\-./:;<=>?@[\]^_`{|}~]+/;
 
 var basicCamelRegEx = /^[a-z\u00E0-\u00FCA-Z\u00C0-\u00DC][\d|a-z\u00E0-\u00FCA-Z\u00C0-\u00DC]*$/;
 var fourOrMoreConsecutiveCapsRegEx = /([A-Z\u00C0-\u00DC]{4,})/g;
 var allCapsRegEx = /^[A-Z\u00C0-\u00DC]+$/;
 
-export function camelCase(str, options) {
+export function camelCase(str) {
   var words = str.split(wordSeparatorsRegEx);
   var len = words.length;
   var mappedWords = new Array(len);

@@ -4,11 +4,11 @@ import test from 'ava';
 
 let flowState;
 
-test.beforeEach(t => {
+test.beforeEach(() => {
   flowState = createFlowState();
 });
 
-test.afterEach.always(t => {
+test.afterEach.always(() => {
   flowState = null;
 });
 
