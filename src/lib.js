@@ -1,21 +1,20 @@
 // any combination of spaces and punctuation characters
 // thanks to http://stackoverflow.com/a/25575009
-var wordSeparatorsRegEx = /[\s\u2000-\u206F\u2E00-\u2E7F\\'!"#$%&()*+,\-./:;<=>?@[\]^_`{|}~]+/;
-
-var basicCamelRegEx = /^[a-z\u00E0-\u00FCA-Z\u00C0-\u00DC][\d|a-z\u00E0-\u00FCA-Z\u00C0-\u00DC]*$/;
-var fourOrMoreConsecutiveCapsRegEx = /([A-Z\u00C0-\u00DC]{4,})/g;
-var allCapsRegEx = /^[A-Z\u00C0-\u00DC]+$/;
+const wordSeparatorsRegEx = /[\s\u2000-\u206F\u2E00-\u2E7F\\'!"#$%&()*+,\-./:;<=>?@[\]^_`{|}~]+/;
+const basicCamelRegEx = /^[a-z\u00E0-\u00FCA-Z\u00C0-\u00DC][\d|a-z\u00E0-\u00FCA-Z\u00C0-\u00DC]*$/;
+const fourOrMoreConsecutiveCapsRegEx = /([A-Z\u00C0-\u00DC]{4,})/g;
+const allCapsRegEx = /^[A-Z\u00C0-\u00DC]+$/;
 
 export function camelCase(str) {
-  var words = str.split(wordSeparatorsRegEx);
-  var len = words.length;
-  var mappedWords = new Array(len);
-  for (var i = 0; i < len; i++) {
-    var word = words[i];
+  const words = str.split(wordSeparatorsRegEx);
+  const len = words.length;
+  const mappedWords = new Array(len);
+  for (let i = 0; i < len; i++) {
+    let word = words[i];
     if (word === '') {
       continue;
     }
-    var isCamelCase = basicCamelRegEx.test(word) && !allCapsRegEx.test(word);
+    const isCamelCase = basicCamelRegEx.test(word) && !allCapsRegEx.test(word);
     if (isCamelCase) {
       word = word.replace(fourOrMoreConsecutiveCapsRegEx, function(
         match,
@@ -25,7 +24,7 @@ export function camelCase(str) {
         return deCap(match, word.length - offset - match.length == 0);
       });
     }
-    var firstLetter = word[0];
+    let firstLetter = word[0];
     firstLetter = i > 0 ? firstLetter.toUpperCase() : firstLetter.toLowerCase();
     mappedWords[i] =
       firstLetter +
@@ -35,9 +34,9 @@ export function camelCase(str) {
 }
 
 function deCap(match, endOfWord) {
-  var arr = match.split('');
-  var first = arr.shift().toUpperCase();
-  var last = endOfWord ? arr.pop().toLowerCase() : arr.pop();
+  const arr = match.split('');
+  const first = arr.shift().toUpperCase();
+  const last = endOfWord ? arr.pop().toLowerCase() : arr.pop();
   return first + arr.join('').toLowerCase() + last;
 }
 
@@ -51,7 +50,7 @@ function deCap(match, endOfWord) {
   function add(...args) {
     return args.reduce((sum, n) => sum + n, 0)
   }
-  var curryAdd4 = curry(add, 4)
+  const curryAdd4 = curry(add, 4)
   curryAdd4(1)(2, 3)(4); // 10
   function converter(ratio, input) {
     return (input*ratio).toFixed(1);
@@ -67,7 +66,7 @@ export function curry(fn, arity) {
     if (arity == null) {
       arity = fn.length;
     }
-    var args = [].slice.call(arguments);
+    const args = [].slice.call(arguments);
     if (args.length >= arity) {
       return fn.apply(this, args);
     } else {
