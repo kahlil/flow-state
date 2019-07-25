@@ -14,7 +14,7 @@
     "build:watch": "microbundle watch",
     "clean": "rimraf dist",
     "prepublishOnly": "yarn build",
-    "pub:patch": "npm version patch && npm publish && git add . && git commit -m 'new build' git push && git push --tags",
+    "pub": "npm version patch && npm publish && git push --follow-tags",
     "test": "ava"
   },
   "ava": {
