@@ -14,7 +14,7 @@
     "build:watch": "microbundle watch",
     "clean": "rimraf dist",
     "prepublishOnly": "yarn build",
-    "test": "ava"
+    "test": "prettier --check \"src/**/*.js\" && ava"
   },
   "ava": {
     "require": [
@@ -28,6 +28,7 @@
     "ava": "2.2.0",
     "esm": "3.2.25",
     "microbundle": "0.11.0",
+    "prettier": "1.18.2",
     "rimraf": "2.6.3",
     "rxjs": "6.5.2"
   }
